@@ -4,6 +4,7 @@
 body {
   margin: 0px;
   height: 100vh;
+  width: 100 vw;
   background-color: #8D1C79;
   color: #000000;
 }
@@ -33,9 +34,23 @@ h1 {
   align-items: center;
   color: #2E094C;
 }
-aside {
-  border: 5px blue solid;
+
+.upcoming-bookings {
+  border: 5px white solid;
 }
-.profile-bookings {
-  border: 10px orange solid;
+
+.past-bookings {
+  border: 5px black solid;
+}
+
+.home-page {
+  border: 10px yellow solid;
+}
+.home-page-image {
+  width: 100vw;
+  height: 200px;
+}
+
+.home-page-image > img {
+  width: 100%;
 }
