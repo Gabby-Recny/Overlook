@@ -1,13 +1,13 @@
 import { expect } from 'chai';
 import Room from '../src/classes/User.js';
-import sampleBookings from '../src/data/sampleBookings.js';
+import sampleRooms from '../src/data/sampleRooms.js';
 
 describe('Room', () => {
   let room1, room2;
 
   beforeEach(() => {
-    room1 = new Room(sampleBookings[0]);
-    room2 = new Room(sampleBookings[1]);
+    room1 = new Room(sampleRooms[0]);
+    room2 = new Room(sampleRooms[1]);
   });
   it('Should be a function', () => {
     expect(Room).to.be.a('function');
