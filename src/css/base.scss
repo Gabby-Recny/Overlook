@@ -1,38 +1,20 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
+@import '_navbar';
+@import 'homePage';
+@import 'reset';
+
+html {
+  height: 100%;
+  width: 100%;
+}
 
 body {
   margin: 0px;
-  height: 100vh;
-  width: 100 vw;
+  height: 100%;
+  width: 100%;
   background-color: #8D1C79;
   color: #000000;
-}
-
-h1 {
-  font-size: 50px;
-  margin: 10px 0px 20px;
-  font-weight: 900;
-}
-
-.nav-bar {
-  color: #FFFFFF;
-  background-color: #2E094C;
-  display: flex;
-  justify-content: space-between;
-  align-items:center;
-  flex-direction: column;
-  width: 100%;
-  font-weight: 500;
-  border: 5px green solid;
-}
-
-.nav-links {
-  width: 90%;
-  display: flex;
-  justify-content:space-around;
-  align-items: center;
-  color: #2E094C;
 }
 
 .upcoming-bookings {
@@ -43,17 +25,6 @@ h1 {
   border: 5px black solid;
 }
 
-.home-page {
-  border: 10px yellow solid;
-}
-.home-page-image {
-  width: 100vw;
-  height: 200px;
-}
-
-.home-page-image > img {
-  width: 100%;
-}
 .log-in-page {
   padding: 25px;
   background-color: lightblue;
