@@ -2,5 +2,40 @@
 @import '_variables';
 
 body {
-  background: $primary-background;
+  margin: 0px;
+  height: 100vh;
+  background-color: #8D1C79;
+  color: #000000;
+}
+
+h1 {
+  font-size: 50px;
+  margin: 10px 0px 20px;
+  font-weight: 900;
+}
+
+.nav-bar {
+  color: #FFFFFF;
+  background-color: #2E094C;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  flex-direction: column;
+  width: 100%;
+  font-weight: 500;
+  border: 5px green solid;
+}
+
+.nav-links {
+  width: 90%;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  color: #2E094C;
+}
+aside {
+  border: 5px blue solid;
+}
+.profile-bookings {
+  border: 10px orange solid;
 }
