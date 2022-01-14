@@ -6,8 +6,8 @@ describe('User', () => {
   let user1, user2;
 
   beforeEach(() => {
-    user1 = new User(customerData[0]);
-    user2 = new User(customerData[1]);
+    user1 = new User(sampleCustomers[0]);
+    user2 = new User(sampleCustomers[1]);
   });
   it('Should be a function', () => {
     expect(User).to.be.a('function');
