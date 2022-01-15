@@ -28,6 +28,7 @@ const domUpdates = {
       logInPage,
       bookingPage,
       roomsPage,
+      accountDashboard,
     ]);
   },
   displayBookingPage() {
@@ -36,6 +37,7 @@ const domUpdates = {
       logInPage,
       roomsPage,
       homePage,
+      accountDashboard,
     ]);
     console.log("BOOKING PAGE")
   },
@@ -45,6 +47,7 @@ const domUpdates = {
       homePage,
       logInPage,
       bookingPage,
+      accountDashboard,
     ]);
   },
   displayLogInPage() {
@@ -53,9 +56,19 @@ const domUpdates = {
       homePage,
       bookingPage,
       roomsPage,
+      accountDashboard,
     ]);
   },
+  displayAccountPage() {
+    domUpdates.show([accountDashboard]);
+    domUpdates.hide([
+      homePage,
+      bookingPage,
+      roomsPage,
+      logInPage
+    ])
+  }
 };
 
 export default domUpdates;
-  export {navLogIn, navBooking, navViewRooms, mainBookingBtn};
+  export {navLogIn, navBooking, navViewRooms, mainBookingBtn, navAccount};
