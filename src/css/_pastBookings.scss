@@ -1,0 +1,116 @@
+
+.past-bookings {
+  h2 {
+    font-size: 25px;
+    font-style: italic;
+    font-weight: bold;
+  }
+}
+
+.past-rooms-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+
+.past-room-card {
+  height: 200px;
+  width: 375px;
+  background-color: #CCCCCC;
+  color: #FFFFFF;
+  margin: 15px;
+  box-shadow: 0px 5px 10px #00000055;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: .5s;
+  border-radius: 5px;
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  position: relative;
+  border: red 5px solid;
+
+  &:hover {
+    filter: brightness(115%);
+    box-shadow: 0px 5px 10px #00000033;
+  }
+}
+
+
+.past-room-photo {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  border: purple solid 5px;
+}
+
+.past-booking-info {
+  border: blue solid 5px;
+  height: 27%;
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  opacity: 70%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .past-room-thumbnail-image {
+//   max-height: 125px;
+//   width: 100%;
+//   object-fit: cover;
+//   border-top-left-radius: 2.5px;
+//   border-top-right-radius: 2.5px;
+//   user-select: none;
+//   cursor: pointer;
+// }
+//
+// .past-room-info {
+//   background-color: #4D3A74;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   padding: 9px;
+//   border-bottom-left-radius: 2.5px;
+//   border-bottom-right-radius: 2.5px;
+// }
+//
+// .past-room-title-and-categories {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: flex-start;
+// }
+//
+// .past-room-title,
+// .past-room-cost {
+//   cursor: pointer;
+//   margin: 0px;
+//   background-color: #4D3A74;
+//   border: none;
+//   font-size: 9px;
+//   font-weight: 200;
+//   color: #00F2EC;
+// }

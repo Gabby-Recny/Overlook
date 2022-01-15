@@ -1,8 +1,9 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
 @import '_navbar';
-@import 'homePage';
-@import 'reset';
+@import '_homePage';
+@import '_reset';
+@import '_userProfile';
 
 html {
   height: 100%;

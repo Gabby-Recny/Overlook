@@ -131,55 +131,6 @@
 // }
 
 
-.booking-date,
-.room-type {
-  position: absolute;
-  background-color:white;
-  opacity: 0.8;
-  left: 20px;
-  top: 20px;
-  padding: 0.5em;
-  border-radius: 0.5em;
-  width: 12em;
-
-}
-
-.past-text-area {
-  background-color: #4D3A74;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 18px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.typeOfBed,
-.costPerNight {
-  cursor: pointer;
-  margin: 0px;
-  background-color: #4D3A74;
-  border: none;
-  font-size: 18px;
-  font-weight: 200;
-  color: #00F2EC;
-}
-
-.room-categories {
-  font-size: 18px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
 // .room-card {
 //   height: 280px;
 //   width: 435px;

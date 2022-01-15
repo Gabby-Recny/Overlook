@@ -1,0 +1,13 @@
+@import 'pastBookings';
+@import 'upcomingBookings';
+
+.account-info {
+  font-style: italic;
+  .welcome-msg {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .user-spendings {
+    font-size: 20px;
+  }
+}
