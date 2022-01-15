@@ -1,13 +1,23 @@
 import { expect } from 'chai';
+import sampleCustomers from '../src/data/sampleCustomers.js';
+import User from '../src/classes/User.js';
 import Booking from '../src/classes/Booking.js';
 import sampleBookings from '../src/data/sampleBookings.js';
+import Hotel from '../src/classes/Hotel.js';
+import Room from '../src/classes/Room.js';
+import sampleRooms from '../src/data/sampleRooms.js';
 
-describe('Booking', () => {
-  let booking1, booking2, booking3;
+describe('Hotel', () => {
+  let booking1, booking2, booking3, room1, room2, user1, user2, hotel;
   beforeEach(() => {
+    room1 = new Room(sampleRooms[0]);
+    room2 = new Room(sampleRooms[1]);
     booking1 = new Booking(sampleBookings[0]);
     booking2 = new Booking(sampleBookings[1]);
     booking3 = new Booking(sampleBookings[2]);
+    user1 = new User(sampleCustomers[0]);
+    user2 = new User(sampleCustomers[1]);
+    hotel = new Hotel(sampleRooms, sampleBookings);
   })
   it('Should be a function', () => {
     expect(Booking).to.be.a('function');

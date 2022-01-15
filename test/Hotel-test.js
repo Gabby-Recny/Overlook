@@ -34,4 +34,44 @@ describe('Hotel', () => {
   it('Should have a list of available rooms', () => {
     expect(hotel.availableRooms).to.deep.equal([]);
   })
+  it('Should access the user bookings', () => {
+    hotel.bookings = [
+      {
+        id: "5fwrgu4i7k55hl6t8",
+        userID: 1,
+        date: "2022/02/05",
+        roomNumber: 12,
+        roomServiceCharges: [ ]
+      },
+      {
+      id: "5fwrgu4i7k55hl6x8",
+      userID: 1,
+      date: "2022/01/11",
+      roomNumber: 20,
+      roomServiceCharges: [ ]
+      },
+      {
+      id: "5fwrgu4i7k55hl728",
+      userID: 30,
+      date: "2022/02/18",
+      roomNumber: 22,
+      roomServiceCharges: [ ]
+      },
+      {
+      id: "5fwrgu4i7k55hl72b",
+      userID: 4,
+      date: "2022/02/02",
+      roomNumber: 20,
+      roomServiceCharges: [ ]
+      },
+    ];
+    expect(hotel.bookings.length).to.equal(4);
+    expect(hotel.getUserBookings(user1).length).to.equal(2);
+  })
+  it('Should access room information for bookings', () => {
+    let bookedRoom = hotel.getRoomInfo(booking1);
+    expect(bookedRoom.number).to.equal(15);
+    expect(bookedRoom.roomType).to.equal('residential suite');
+    expect(bookedRoom.costPerNight).to.equal(294.56);
+  })
 });
