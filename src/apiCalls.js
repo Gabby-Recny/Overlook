@@ -18,8 +18,8 @@ const fetchBookingAPI = () => {
 
 const fetchRoomsAPI = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
-    .then(response => response.json()
-    .then(error => console.log(error))
+    .then(response => response.json())
+    .catch(error => console.log(error))
 }
 
 

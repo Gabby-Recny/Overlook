@@ -30,15 +30,23 @@ import {
 
 console.log('This is the JavaScript entry file - your code begins here.');
 
-const pageLoad = () => {
+const fetchData = () => {
   console.log("PAGE LOAD")
-  fetchCustomersAPI()
-  fetchOneCustomerAPI()
-  fetchBookingAPI()
+  Promise.all([
+    fetchCustomersAPI(),
+    fetchOneCustomerAPI(2),
+    fetchBookingAPI(),
+    fetchRoomsAPI(),
+  ]).then(data => pageLoad(data))
+}
+
+const pageLoad = (data) => {
+  console.log(data)
+
 }
 
 
-window.addEventListener('load', pageLoad);
+window.addEventListener('load', fetchData);
 navLogIn.addEventListener('click', () => {
   domUpdates.displayLogInPage()
 });
