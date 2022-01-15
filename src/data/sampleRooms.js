@@ -16,7 +16,7 @@ const sampleRooms = [
     costPerNight: 477.38
   },
   {
-    number: 3,
+    number: 20,
     roomType: "single room",
     bidet: false,
     bedSize: "king",
@@ -24,12 +24,20 @@ const sampleRooms = [
     costPerNight: 491.14
   },
   {
-    number: 4,
+    number: 12,
     roomType: "single room",
     bidet: false,
     bedSize: "queen",
     numBeds: 1,
     costPerNight: 429.44
+  },
+  {
+    number: 15,
+    roomType: "residential suite",
+    bidet: false,
+    bedSize: "full",
+    numBeds: 1,
+    costPerNight: 294.56
   },
 ];
 export default sampleRooms;
