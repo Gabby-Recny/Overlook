@@ -11,7 +11,9 @@ const navLogIn = document.getElementById('navLogIn');
 const mainBookingBtn = document.getElementById('mainBookingBtn');
 
 
+
 const domUpdates = {
+
   hide(elements) {
     elements.forEach(element => element.classList.add('hidden'));
   },
@@ -29,8 +31,8 @@ const domUpdates = {
     ]);
   },
   displayBookingPage() {
-    domUpdates.show([bookingPage]);
-    domUpdates.hide([
+    show([bookingPage]);
+    hide([
       logInPage,
       roomsPage,
       homePage,
@@ -55,3 +57,4 @@ const domUpdates = {
 };
 
 export default domUpdates;
+  export {navLogIn, navBooking, navViewRooms, mainBookingBtn};
