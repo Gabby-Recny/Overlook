@@ -3,19 +3,23 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import {fetchCustomersAPI} from './apiCalls.js';
-// import fetchOneCustomerAPI from './apiCalls.js';
+import {
+        fetchCustomersAPI,
+        fetchOneCustomerAPI,
+        fetchRoomsAPI,
+        fetchBookingAPI,
+        } from './apiCalls.js';
 import domUpdates from './domUpdates.js';
 import {
   logInPage,
   bookingPage,
-  // roomsPage,
-  // navAccount,
+  roomsPage,
+  navAccount,
   navBooking,
-  // navViewRooms,
-  // navLogIn,
-  // navLogOut,
-  // mainBookingBtn,
+  navViewRooms,
+  navLogIn,
+  navLogOut,
+  mainBookingBtn,
 } from './domUpdates.js';
 
 
@@ -29,15 +33,17 @@ console.log('This is the JavaScript entry file - your code begins here.');
 const pageLoad = () => {
   console.log("PAGE LOAD")
   fetchCustomersAPI()
+  fetchOneCustomerAPI()
+  fetchBookingAPI()
 }
 
 
 window.addEventListener('load', pageLoad);
 navLogIn.addEventListener('click', () => {
-  displayLogInPage()
+  domUpdates.displayLogInPage()
 });
 navViewRooms.addEventListener('click', () => {
-  displayRoomsPage()
+  domUpdates.displayRoomsPage()
 });
 navBooking.addEventListener('click', () => {
   domUpdates.displayBookingPage()

@@ -31,12 +31,13 @@ const domUpdates = {
     ]);
   },
   displayBookingPage() {
-    show([bookingPage]);
-    hide([
+    domUpdates.show([bookingPage]);
+    domUpdates.hide([
       logInPage,
       roomsPage,
       homePage,
     ]);
+    console.log("BOOKING PAGE")
   },
   displayRoomsPage() {
     domUpdates.show([roomsPage]);
