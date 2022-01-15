@@ -4,19 +4,18 @@ class Hotel {
     this.bookings = hotelBookings;
     this.availableRooms = [];
   }
-  getUserBookings(user) {
-    return this.bookings.filter(booking => user.id === booking.userID);
-  }
   getRoomInfo(booking) {
     return this.rooms.find(room => room.number === booking.roomNumber);
   }
+  // calculateTotalSpent(user) {
+  //   console.log(this.getRoomInfo(user.bookings[0]))
+  //   this.bookings.reduce((acc, booking) => {
+  //     let roomInfo = hotel.getRoomInfo(booking);
+  //     console.log(hotel)
+  //     return acc;
+  //   }, 0);
+  // }
 };
 
 
 export default Hotel;
-
-
-
-//getRoomInfo for bookings;
-//match booking.roomNumber to room.numer;
-//

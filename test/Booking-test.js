@@ -7,7 +7,7 @@ import Hotel from '../src/classes/Hotel.js';
 import Room from '../src/classes/Room.js';
 import sampleRooms from '../src/data/sampleRooms.js';
 
-describe('Hotel', () => {
+describe('Booking', () => {
   let booking1, booking2, booking3, room1, room2, user1, user2, hotel;
   beforeEach(() => {
     room1 = new Room(sampleRooms[0]);

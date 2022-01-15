@@ -7,7 +7,7 @@ import Hotel from '../src/classes/Hotel.js';
 import Room from '../src/classes/Room.js';
 import sampleRooms from '../src/data/sampleRooms.js';
 
-describe('Hotel', () => {
+describe.only('User', () => {
   let booking1, booking2, booking3, room1, room2, user1, user2, hotel;
   beforeEach(() => {
     room1 = new Room(sampleRooms[0]);
@@ -50,5 +50,14 @@ describe('Hotel', () => {
   it('Should start off without any money spent', () => {
     expect(user1.totalSpent).to.equal(0);
     expect(user2.totalSpent).to.equal(0);
+  })
+  it('Should access the user bookings', () => {
+    user1.getUserBookings(sampleBookings)
+    expect(user1.bookings.length).to.equal(2);
+  })
+  it('Should calculate total amount the user has spent', () => {
+    user1.getUserBookings(sampleBookings);
+    user1.calculateTotalSpent(sampleBookings, sampleRooms);
+    expect(user1.totalSpent).to.equal(920.58);
   })
 });

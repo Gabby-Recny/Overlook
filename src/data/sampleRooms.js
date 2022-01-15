@@ -16,7 +16,7 @@ const sampleRooms = [
     costPerNight: 477.38
   },
   {
-    number: 3,
+    number: 20,
     roomType: "single room",
     bidet: false,
     bedSize: "king",
@@ -24,7 +24,7 @@ const sampleRooms = [
     costPerNight: 491.14
   },
   {
-    number: 4,
+    number: 12,
     roomType: "single room",
     bidet: false,
     bedSize: "queen",
