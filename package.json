@@ -29,6 +29,7 @@
     "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
   },
   "dependencies": {
-    "webpack-dev-server": "^3.11.2"
+    "js-datepicker": "^5.18.0",
+    "webpack-dev-server": "^4.7.3"
   }
 }
