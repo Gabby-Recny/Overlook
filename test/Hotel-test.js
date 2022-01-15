@@ -40,8 +40,4 @@ describe('Hotel', () => {
     expect(bookedRoom.roomType).to.equal('residential suite');
     expect(bookedRoom.costPerNight).to.equal(294.56);
   })
-  // it('Should calculate total amount the user has spent', () => {
-  //   hotel.calculateTotalSpent(user1);
-  //   expect(user1.totalSpent).to.equal(232323);
-  // })
 });
