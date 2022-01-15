@@ -56,3 +56,6 @@ navViewRooms.addEventListener('click', () => {
 navBooking.addEventListener('click', () => {
   domUpdates.displayBookingPage()
 });
+navAccount.addEventListener('click', () => {
+  domUpdates.displayAccountPage()
+})
