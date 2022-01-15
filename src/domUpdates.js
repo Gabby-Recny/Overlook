@@ -4,7 +4,7 @@ const logInPage = document.getElementById('logInPage');
 const bookingPage = document.getElementById('bookingPage');
 const roomsPage = document.getElementById('roomsPage');
 const navAccount = document.getElementById('navAccount');
-const navBookNow = document.getElementById('navBookNow');
+const navBooking = document.getElementById('navBookNow');
 const navViewRooms = document.getElementById('navViewRooms');
 const navLogOut = document.getElementById('navLogOut');
 const navLogIn = document.getElementById('navLogIn');
@@ -20,32 +20,38 @@ const domUpdates = {
     elements.forEach(element => element.classList.remove('hidden'));
   },
 
-  displayHomePage = () => {
+  displayHomePage() {
     domUpdates.show([homePage, mainBookingBtn]);
     domUpdates.hide([
       logInPage,
       bookingPage,
       roomsPage,
-    ])
-
-    displayBookingPage = () => {
-      domUpdates.show([bookingPage]);
-      domUpdates.hide([
-        logInPage,
-        roomsPage,
-        homePage,
-      ])
-
-      displayRoomsPage = () => {
-        domUpdates.show([roomsPage]);
-        domUpdates.hide([
-          homePage,
-          logInPage,
-          bookingPage,
-        ])
-      }
-    }
-  }
+    ]);
+  },
+  displayBookingPage() {
+    domUpdates.show([bookingPage]);
+    domUpdates.hide([
+      logInPage,
+      roomsPage,
+      homePage,
+    ]);
+  },
+  displayRoomsPage() {
+    domUpdates.show([roomsPage]);
+    domUpdates.hide([
+      homePage,
+      logInPage,
+      bookingPage,
+    ]);
+  },
+  displayLogInPage() {
+    domUpdates.show([logInPage]);
+    domUpdates.hide([
+      homePage,
+      bookingPage,
+      roomsPage,
+    ]);
+  },
 };
 
 export default domUpdates;

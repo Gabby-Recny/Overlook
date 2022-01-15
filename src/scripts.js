@@ -16,12 +16,13 @@ console.log('This is the JavaScript entry file - your code begins here.');
 const pageLoad = () => {
   console.log("PAGE LOAD")
   getCustomersAPI()
-  // console.log("FETCH CUSTOMERS", fetchCustomersAPI())
 }
 
 const getCustomersAPI = () => {
-  console.log("HELLO")
-    // console.log("FETCH CUSTOMERS", fetchCustomersAPI())
+  console.log("FETCH CUSTOMERS", fetchCustomersAPI())
 }
 
 window.addEventListener('load', pageLoad);
+navLogIn.addEventListener('click', displayLogInPage);
+navViewRooms.addEventListener('click', displayRoomsPage);
+navBooking.addEventListener('click', displayBookingPage);
