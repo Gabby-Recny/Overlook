@@ -1,41 +1,65 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
+@import '_navbar';
+@import '_homePage';
+@import '_reset';
+@import '_userProfile';
+
+html {
+  height: 100%;
+  width: 100%;
+}
 
 body {
   margin: 0px;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   background-color: #8D1C79;
   color: #000000;
 }
 
-h1 {
-  font-size: 50px;
-  margin: 10px 0px 20px;
-  font-weight: 900;
+.upcoming-bookings {
+  border: 5px white solid;
 }
 
-.nav-bar {
-  color: #FFFFFF;
-  background-color: #2E094C;
-  display: flex;
-  justify-content: space-between;
-  align-items:center;
-  flex-direction: column;
-  width: 100%;
-  font-weight: 500;
-  border: 5px green solid;
+.past-bookings {
+  border: 5px black solid;
 }
 
-.nav-links {
-  width: 90%;
-  display: flex;
-  justify-content:space-around;
-  align-items: center;
-  color: #2E094C;
+.log-in-page {
+  padding: 25px;
+  background-color: lightblue;
+ form {
+        border: 3px solid #f1f1f1;
+    }
+ input[type=text], input[type=password] {
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid green;
+        box-sizing: border-box;
+    }
+    .submit-btn {
+       background-color: #4CAF50;
+       width: 100%;
+        color: orange;
+        padding: 15px;
+        margin: 10px 0px;
+        border: none;
+        cursor: pointer;
+         }
+ .submit-btn:hover {
+        opacity: 0.7;
+    }
+  .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        margin: 10px 5px;
+    }
+
 }
-aside {
-  border: 5px blue solid;
-}
-.profile-bookings {
-  border: 10px orange solid;
+
+.hidden {
+  display: none;
 }

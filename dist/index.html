@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,49 +9,146 @@
 </head>
 <!DOCTYPE html>
 <html lang="en">
+
 <body>
   <nav class="nav-bar">
-    <h1>Overlook</h1>
+    <h1 class='title'>Overlook</h1>
     <ul class="nav-links">
-      <li id="myAccount" tabindex="0">My Account</li>
-      <li id="bookLink" tabindex="0">Book Now</li>
-      <li id="viewRooms" tabindex="0">Rooms</li>
+      <li id="navAccount" tabindex="0">My Account</li>
+      <li id="navBookNow" tabindex="0">Book Now</li>
+      <li id="navViewRooms" tabindex="0">Rooms</li>
+      <li id="navLogOut" tabindex="0">Log Out</li>
     </ul>
   </nav>
-    <section>
+  <!-- <section class='home-page' id='homePage'>
+    <div class='main-image'>
+      <img class="home-page-image" src='https://placebear.com/640/360' alt='Random image'>
+      <button class='booking-button'>
+        Come Stay A While
+      </button>
+    </div>
+  </section> -->
+  <section class='user-profile'>
+    <article class='account-info'>
       <h2 id="welcomeMsg" class="welcome-msg">Welcome, User!</h2>
-      <h2>You have spent <span id='totalSpent'>$1093424.84</span> on rooms with us. <br>Thank you for your trust!</h2>
-    </section>
-    <main class='profile-bookings'>
-      <section class=upcoming-bookings>
-        <h2>Upcoming Stays</h2>
-        <section class='room-grid' id='roomGrid'>
-          <article class='upcoming-stays' id='upcomingStays'>
-          </article>
-          <article class='no-upcoming-stays hidden'>
-            <h3>You have no upcoming stays.</h3>
-            <h3 tabindex="0">Why don't you book with us and stay awhile?</h3>
-          </article>
-        </section>
-        <section class=pastBookings>
-          <h2>Past Stays</h2>
-          <article class='hidden'>
-            <h3>You have no past stays with us yet. Book now to get started</h3>
-          </article>
-          <section class='room-grid' id='pastRoomGrid'>
-            <section class="room-card" id="roomCard">
-              <div class="room-thumbnail" id="roomThumbnail">
-                <!-- <img src="IMG LINK" alt="SPECIFIC ALT TAG" /> -->
-              </div>
-          </section>
-        </section>
+      <h2 class='user-spendings'>You have spent <span id='totalSpent'>$1093424.84</span> on rooms with us. <br>Thank you for your trust!</h2>
+    </article>
+    <section class='upcoming-bookings' id='upcomingBookings'>
+      <h2>Upcoming Trips</h2>
+      <section class='upcoming-rooms-grid' id='upcomingRoomsGrid'>
+        <article class='room-card'>
+            <div class='booking-info'>
+              <p>Jan 11, 2011</p>
+              <p>Single Room</p>
+            </div>
+            <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+            <div class='cost-and-bed-type'>
+                <h3>$3954</h3>
+              <h3 class='room-bed-type'>King</h3>
+            </div>
+        </article>
+        <article class='room-card'>
+            <div class='booking-info'>
+              <p>Jan 11, 2011</p>
+              <p>Single Room</p>
+            </div>
+            <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+            <div class='cost-and-bed-type'>
+                <h3>$3954</h3>
+              <h3 class='room-bed-type'>King</h3>
+            </div>
+        </article>
+        <article class='room-card'>
+            <div class='booking-info'>
+              <p>Jan 11, 2011</p>
+              <p>Single Room</p>
+            </div>
+            <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+            <div class='cost-and-bed-type'>
+                <h3>$3954</h3>
+              <h3 class='room-bed-type'>King</h3>
+            </div>
+        </article>
+        <article class='room-card'>
+            <div class='booking-info'>
+              <p>Jan 11, 2011</p>
+              <p>Single Room</p>
+            </div>
+            <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+            <div class='cost-and-bed-type'>
+                <h3>$3954</h3>
+              <h3 class='room-bed-type'>King</h3>
+            </div>
+        </article>
       </section>
-    </main>
-  <main>
-    <section>
     </section>
-  </main>
-  <script src="bundle.js"></script>
+    <section class='past-bookings' id='pastBookings'>
+      <h2>Past Stays</h2>
+      <section class='past-rooms-grid' id='pastRoomsGrid'>
+        <article class='past-room-card'>
+          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+          <div class='past-booking-info'>
+            <p>Jan 11, 2011</p>
+            <p>Single Room</p>
+            <p>cost</p>
+          </div>
+        </article>
+        <article class='past-room-card'>
+          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+          <div class='past-booking-info'>
+            <p>Jan 11, 2011</p>
+            <p>Single Room</p>
+            <p>cost</p>
+          </div>
+        </article>
+        <article class='past-room-card'>
+          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+          <div class='past-booking-info'>
+            <p>Jan 11, 2011</p>
+            <p>Single Room</p>
+            <p>cost</p>
+          </div>
+        </article>
+        <article class='past-room-card'>
+          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+          <div class='past-booking-info'>
+            <p>Jan 11, 2011</p>
+            <p>Single Room</p>
+            <p>cost</p>
+          </div>
+        </article>
+        <article class='past-room-card'>
+          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+          <div class='past-booking-info'>
+            <p>Jan 11, 2011</p>
+            <p>Single Room</p>
+            <p>cost</p>
+          </div>
+        </article>
+
+
+
+
+
+
+
+
+      </section>
+    </section>
+  </section>
+
+  <!-- <section class='log-in-page'>
+    <form>
+      <div class="log-in-form">
+        <label>Username : </label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+        <label>Password : </label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        <button class='submit-btn' type="submit">Login</button>
+        <button type="button" class="cancelbtn"> Cancel</button>
+      </div>
+    </form> -->
+    <script src="bundle.js"></script>
 </body>
 
 </html>
