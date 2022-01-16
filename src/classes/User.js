@@ -14,7 +14,7 @@ class User {
   getUserBookings(bookingData) {
     // console.log(1, 'GET USER BOOKINGS user line 15', bookingData)
     bookingData.forEach(booking => {
-      if(this.id === booking.userID) {
+      if (this.id === booking.userID) {
         this.bookings.push(booking)
       }
     })
@@ -25,31 +25,36 @@ class User {
     this.getUserBookings(bookingData)
     const totalAmt = this.bookings.reduce((acc, booking) => {
       let findRoom = roomData.filter(room => {
-        if(room.number === booking.roomNumber) {
+        if (room.number === booking.roomNumber) {
           acc += room.costPerNight
         }
       })
       return acc;
     }, 0);
     // this.totalSpent = Math.round(totalAmt*100)/100;
-    return Math.round(totalAmt*100)/100;
+    return Math.round(totalAmt * 100) / 100;
+  }
+
+  getPastBookings(currentDate, bookingData) {
+    this.getUserBookings(bookingData)
+    this.bookings.forEach(booking => {
+      if (currentDate < booking.date) {
+        this.pastBookings.push(booking);
+      }
+    })
+    return this.pastBookings;
   }
 
   getUpcomingBookings(currentDate, bookingData) {
-  this.getUserBookings(bookingData)
-  this.bookings.forEach(booking => {
-    if (currentDate === booking.date || currentDate > booking.date) {
-      this.upcomingBookings.push(booking);
+    this.getUserBookings(bookingData)
+    this.bookings.forEach(booking => {
+        if (currentDate === booking.date || currentDate > booking.date) {
+          this.upcomingBookings.push(booking);
+        }
+      }
+      return this.upcomingBookings
     }
-    // else {
-    //   console.log('PAST PAST')
-    //   this.pastBookings.push(booking);
-    //   return this.pastBookings;
-    //   }
-    })
-      return this.upcomingBookings;
-  }
 }
 
 
-export default User;
+      export default User;
