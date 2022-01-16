@@ -2,6 +2,12 @@
 // Do not delete or rename this file ********
 
 // An example of how you tell webpack to use a CSS (SCSS) file
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
+// export isSameOrAfter = require(‘dayjs/plugin/isSameOrAfter');
+// import dayjs from '../scripts.js';
+// import currentDate from '../scripts.js';
+// import isSameOrAfter from ‘../scripts.js';
 import './css/base.scss';
 import {
         fetchCustomersAPI,
@@ -62,29 +68,29 @@ const pageLoad = (data) => {
   guestData = data[0].customers;
   bookingData = data[1].bookings;
   roomData = data[2].rooms;
-  instantiateRoom(roomData)
-  instanstiateBooking(bookingData)
+  // instantiateRoom(roomData)
+  // instanstiateBooking(bookingData)
   instantiateGuest(guestData)
-  domUpdates.displayUserInfo(bookingData, roomData);
 }
 
-const instanstiateBooking = (bookingData) => {
-  bookings = [];
-  bookingData.forEach(bookingObj => {
-    booking = new Booking(bookingObj);
-    bookings.push(booking);
-  });
-  return bookings;
-}
-
-const instantiateRoom = () => {
-  const rooms = [];
-  roomData.forEach(roomObj => {
-    room = new Room(roomObj);
-    rooms.push(room);
-  });
-  return rooms;
-}
+// const instanstiateBooking = (bookingData) => {
+//   bookings = [];
+//   bookingData.forEach(bookingObj => {
+//     booking = new Booking(bookingObj);
+//     bookings.push(booking);
+//   });
+//   return bookings;
+// }
+//
+// const instantiateRoom = (roomData) => {
+//   const rooms = [];
+//   roomData.forEach(roomObj => {
+//     room = new Room(roomObj);
+//     rooms.push(room);
+//   });
+//   console.log('line 91', rooms)
+//   return rooms;
+// }
 
 const instantiateGuest = (guestData) => {
   guests = [];
@@ -111,7 +117,7 @@ navBooking.addEventListener('click', () => {
   domUpdates.displayBookingPage()
 });
 navAccount.addEventListener('click', () => {
-  domUpdates.displayAccountPage()
+  domUpdates.displayAccountPage(bookingData, roomData)
 })
 calendarSubmit.addEventListener('click', () => {
   domUpdates.accessDate(event)

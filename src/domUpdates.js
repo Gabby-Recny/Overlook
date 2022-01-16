@@ -13,15 +13,17 @@ const msgUserName = document.getElementById('msgUserName');
 const totalSpent = document.getElementById('totalSpent');
 const calendarSubmit = document.getElementById('calendarSubmit');
 const calendarForm = document.getElementById('date');
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
 
 import {
   guestData,
   bookingData,
   roomData,
   bookings,
-  rooms,
-  booking,
-  guests,
+  // rooms,
+  // booking,
+  // guests,
   room,
   guest,
 } from './scripts.js';
@@ -55,7 +57,6 @@ const domUpdates = {
       homePage,
       accountDashboard,
     ]);
-    console.log("BOOKING PAGE")
   },
   displayRoomsPage() {
     domUpdates.show([roomsPage]);
@@ -86,29 +87,34 @@ const domUpdates = {
     domUpdates.displayUserInfo(bookingData, roomData)
   },
   displayUserInfo(bookingData, roomData) {
-    guest.calculateTotalSpent(bookingData, roomData)
+    console.log(3, 'line 88 domUpdates', bookingData)
+    guest.getUserBookings(bookingData);
+    guest.calculateTotalSpent(bookingData, roomData);
     msgUserName.innerText = `${guest.name}!`;
     totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
-    domUpdates.displayPastBookings(bookingData, roomData)
+    domUpdates.displayUpcomingBookings(bookingData, roomData)
   },
   accessDate(event) {
     event.preventDefault();
     console.log(calendarForm.value)
   },
-  displayPastBookings(bookings, rooms) {
-   console.log("DISPLAY PAST BOOKINGS")
-   let guestBookings = guest.sortBookings();
-   console.log(guestBookings)
-   pastBookings.innerHTML += `
-   <article class='past-room-card'>
-     // <img class='past-room-photo' src="${room.image}"  alt="Photo of the ${room.type}">
-     <div class='past-booking-info'>
-       <p id='pastDate'>${booking.date}</p>
-       <p id='pastRoomType'>${room.type}</p>
-       <p id'pastCost'>$${room.costPerNight} per night</p>
-     </div>
-   </article>
-   `
+  displayUpcomingBookings(bookingData, roomData) {
+    console.log(4)
+  let guestBookings = guest.getUpcomingBookings(currentDate, bookingData);
+  console.log("LINE 104", guestBookings)
+   guestBookings.forEach(booking => {
+    let room = roomData.filter(room => room.number === booking.roomNumber);
+     pastBookings.innerHTML += `
+     <article class='past-room-card'>
+       <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Photo of the ${room.type}>
+       <div class='past-booking-info'>
+         <p id='pastDate'>${booking.date}</p>
+         <p id='pastRoomType'>${room.type}</p>
+         <p id'pastCost'>$${room.costPerNight} per night</p>
+       </div>
+     </article>
+     `
+   })
  },
 
 };

@@ -1,3 +1,6 @@
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
+
 class User {
   constructor(user, bookingData, roomData) {
     this.id = user.id;
@@ -9,6 +12,7 @@ class User {
   }
   //SAD PATH FOR USER BOOKINGS
   getUserBookings(bookingData) {
+    // console.log(1, 'GET USER BOOKINGS user line 15', bookingData)
     bookingData.forEach(booking => {
       if(this.id === booking.userID) {
         this.bookings.push(booking)
@@ -17,6 +21,7 @@ class User {
     return this.bookings;
   }
   calculateTotalSpent(bookingData, roomData) {
+    console.log(2, 'user line 25', bookingData)
     this.getUserBookings(bookingData)
     const totalAmt = this.bookings.reduce((acc, booking) => {
       let findRoom = roomData.filter(room => {
@@ -29,18 +34,20 @@ class User {
     // this.totalSpent = Math.round(totalAmt*100)/100;
     return Math.round(totalAmt*100)/100;
   }
-  sortBookings() {
-    this.getUserBookings(bookingData);
-    this.bookings.forEach(booking => {
-      if (booking.date > 2021/31/12) {
-        this.upcomingBookings.push(booking)
-        return this.upcomingBookings;
-      }
-      else {
-        this.pastBookings.push(booking)
-        return this.pastBookings
-      }
+
+  getUpcomingBookings(currentDate, bookingData) {
+  this.getUserBookings(bookingData)
+  this.bookings.forEach(booking => {
+    if (currentDate === booking.date || currentDate > booking.date) {
+      this.upcomingBookings.push(booking);
+    }
+    // else {
+    //   console.log('PAST PAST')
+    //   this.pastBookings.push(booking);
+    //   return this.pastBookings;
+    //   }
     })
+      return this.upcomingBookings;
   }
 }
 
