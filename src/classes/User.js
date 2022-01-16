@@ -17,6 +17,7 @@ class User {
     return this.bookings;
   }
   calculateTotalSpent(bookingData, roomData) {
+    this.getUserBookings(bookingData)
     const totalAmt = this.bookings.reduce((acc, booking) => {
       let findRoom = roomData.filter(room => {
         if(room.number === booking.roomNumber) {
@@ -25,8 +26,8 @@ class User {
       })
       return acc;
     }, 0);
-    this.totalSpent = Math.round(totalAmt*100)/100
-    // return Math.round(totalAmt*100)/100
+    // this.totalSpent = Math.round(totalAmt*100)/100;
+    return Math.round(totalAmt*100)/100;
   }
 }
 

@@ -9,6 +9,20 @@ const navViewRooms = document.getElementById('navViewRooms');
 const navLogOut = document.getElementById('navLogOut');
 const navLogIn = document.getElementById('navLogIn');
 const mainBookingBtn = document.getElementById('mainBookingBtn');
+const msgUserName = document.getElementById('msgUserName');
+const totalSpent = document.getElementById('totalSpent');
+
+import {
+  guestData,
+  bookingData,
+  roomData,
+  bookings,
+  rooms,
+  booking,
+  guests,
+  room,
+  guest,
+} from './scripts.js';
 
 
 
@@ -67,8 +81,13 @@ const domUpdates = {
       roomsPage,
       logInPage
     ])
-  }
+  },
+  displayUserInfo(bookingData, roomData) {
+    guest.calculateTotalSpent(bookingData, roomData)
+      msgUserName.innerText = `${guest.name}!`;
+      totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
+  },
 };
 
 export default domUpdates;
-  export {navLogIn, navBooking, navViewRooms, mainBookingBtn, navAccount};
+  export {navLogIn, navBooking, navViewRooms, mainBookingBtn, navAccount, msgUserName, totalSpent};
