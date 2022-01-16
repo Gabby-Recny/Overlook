@@ -11,6 +11,8 @@ const navLogIn = document.getElementById('navLogIn');
 const mainBookingBtn = document.getElementById('mainBookingBtn');
 const msgUserName = document.getElementById('msgUserName');
 const totalSpent = document.getElementById('totalSpent');
+const calendarSubmit = document.getElementById('calendarSubmit');
+const calendarForm = document.getElementById('date');
 
 import {
   guestData,
@@ -84,10 +86,24 @@ const domUpdates = {
   },
   displayUserInfo(bookingData, roomData) {
     guest.calculateTotalSpent(bookingData, roomData)
-      msgUserName.innerText = `${guest.name}!`;
-      totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
+    msgUserName.innerText = `${guest.name}!`;
+    totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
+  },
+  accessDate(event) {
+    event.preventDefault();
+    console.log(calendarForm.value)
   },
 };
 
 export default domUpdates;
-  export {navLogIn, navBooking, navViewRooms, mainBookingBtn, navAccount, msgUserName, totalSpent};
+export {
+  navLogIn,
+  navBooking,
+  navViewRooms,
+  mainBookingBtn,
+  navAccount,
+  msgUserName,
+  totalSpent,
+  calendarForm,
+  calendarSubmit,
+};

@@ -22,6 +22,8 @@ import {
   mainBookingBtn,
   msgUserName,
   totalSpent,
+  calendarForm,
+  calendarSubmit,
 } from './domUpdates.js';
 import User from './classes/User.js';
 import Room from './classes/Room.js';
@@ -52,6 +54,7 @@ const fetchData = () => {
     fetchBookingAPI(),
     fetchRoomsAPI(),
   ]).then(data => pageLoad(data))
+    // .catch(error => console.log(error))
 }
 
 const pageLoad = (data) => {
@@ -89,14 +92,13 @@ const instantiateGuest = (guestData) => {
     guest = new User (guestObj);
     guests.push(guest);
   });
-  return guests;
+  const title = document.querySelector('.title');
+  title.innerHTML = guests[2].name
+  // user = new User(data[0][getRandomIndex(data[0])]);
+  // return guests;
 }
 
 export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest}
-
-
-
-
 
 window.addEventListener('load', fetchData);
 navLogIn.addEventListener('click', () => {
@@ -111,3 +113,6 @@ navBooking.addEventListener('click', () => {
 navAccount.addEventListener('click', () => {
   domUpdates.displayAccountPage()
 })
+calendarSubmit.addEventListener('click', () => {
+  domUpdates.accessDate(event)
+});

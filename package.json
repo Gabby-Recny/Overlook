@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "js-datepicker": "^5.18.0",
+    "moment": "^2.29.1",
     "webpack-dev-server": "^4.7.3"
   }
 }

@@ -29,6 +29,16 @@ class User {
     // this.totalSpent = Math.round(totalAmt*100)/100;
     return Math.round(totalAmt*100)/100;
   }
+  sortBookings(currentDate) {
+    this.bookings.forEach(booking => {
+      if (booking.isAfter(currentDate)) {
+        this.upcomingBookings.push(booking)
+      }
+      else {
+        this.pastBookings.push(booking)
+      }
+    })
+  }
 }
 
 
