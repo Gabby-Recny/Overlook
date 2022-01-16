@@ -103,13 +103,15 @@ const domUpdates = {
     displayPastBookings(bookingData, roomData) {
       let guestBookings = guest.getPastBookings(currentDate, bookingData);
       guestBookings.forEach(booking => {
-        let pastRoom = roomData.filter(room => room.number === booking.roomNumber);
+        let pastRoom = roomData.find(room => room.number === booking.roomNumber);
+        console.log(107, "Past Room:", pastRoom);
+        console.log(108, "Past Booking", booking)
         pastRoomsGrid.innerHTML += `
         <article class='past-room-card'>
-          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="${pastRoom.type}">
+          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="${pastRoom.roomType}">
           <div class='past-booking-info'>
             <p id='pastDate'>${booking.date}</p>
-            <p id='pastRoomType'>${pastRoom.type}</p>
+            <p id='pastRoomType'>${pastRoom.roomType}</p>
             <p id'pastCost'>$${pastRoom.costPerNight} per night</p>
           </div>
         </article>
@@ -119,12 +121,12 @@ const domUpdates = {
     displayUpcomingBookings(bookingData, roomData) {
       let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
       upcomingGuestBookings.forEach(booking => {
-      let room = roomData.filter(room => room.number === booking.roomNumber);
+      let room = roomData.find(room => room.number === booking.roomNumber);
       upcomingRoomsGrid.innerHTML += `
         <article class='room-card'>
           <div class='booking-info'>
             <p id='upcomingDate'>${booking.date}</p>
-            <p id='upcomingRoomType'>${room.type}</p>
+            <p id='upcomingRoomType'>${room.roomType}</p>
           </div>
             <img class='room-photo' src="https:/loremflickr.com/640/360"  alt="Random Photo">
           <div class='cost-and-bed-type'>
