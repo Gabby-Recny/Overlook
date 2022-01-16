@@ -2,6 +2,10 @@
 // Do not delete or rename this file ********
 
 // An example of how you tell webpack to use a CSS (SCSS) file
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
+const isSameOrAfter = require('dayjs/plugin/isSameOrAfter');
+//dayjs.extend(isSameOrAfter);
 import './css/base.scss';
 import {
         fetchCustomersAPI,
@@ -92,15 +96,23 @@ const instantiateGuest = (guestData) => {
     guest = new User (guestObj);
     guests.push(guest);
   });
-  const title = document.querySelector('.title');
-  title.innerHTML = guests[2].name
-  // user = new User(data[0][getRandomIndex(data[0])]);
-  // return guests;
+  checkIfWorking()
+  return guests;
+}
+
+const checkIfWorking = () => {
+  console.log("HIIIIIII")
+  // console.log(dayjs().format("YYYY/MM/DD"))
+  // console.log("booking date", booking.date)
+  console.log("CONCIDTIONAL", dayjs.extend(isSameOrBefore))
+  console.log("CHECK METHOD", guest.sortBookings(currentDate, bookings))
 }
 
 export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest}
 
-window.addEventListener('load', fetchData);
+window.addEventListener('load', () => {
+  fetchData()
+});
 navLogIn.addEventListener('click', () => {
   domUpdates.displayLogInPage()
 });

@@ -1,3 +1,7 @@
+import dayjs from '../scripts.js';
+import currentDate from '../scripts.js';
+import isSameOrAfter from '../scripts.js';
+
 class User {
   constructor(user, bookingData, roomData) {
     this.id = user.id;
@@ -29,13 +33,17 @@ class User {
     // this.totalSpent = Math.round(totalAmt*100)/100;
     return Math.round(totalAmt*100)/100;
   }
-  sortBookings(currentDate) {
+  sortBookings(currentDate, bookingData) {
+    this.getUserBookings(bookingData)
     this.bookings.forEach(booking => {
-      if (booking.isAfter(currentDate)) {
-        this.upcomingBookings.push(booking)
+      if (currentDate === booking.date || currentDate > booking.date) {
+        console.log("SAME SAME")
+        this.upcomingBookings.push(booking);
+        return this.upcomingBookings;
       }
       else {
-        this.pastBookings.push(booking)
+        this.pastBookings.push(booking);
+        return this.pastBookings;
       }
     })
   }
