@@ -45,11 +45,11 @@ const getRandomIndex = (arr) => {
   return Math.floor(Math.random() * arr.length);
 }
 
-const displayUserInfo = (bookingData, roomData) => {
-  guest.calculateTotalSpent(bookingData, roomData)
-    msgUserName.innerText = `${guest.name}!`;
-    totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
-}
+// const displayUserInfo = (bookingData, roomData) => {
+//   guest.calculateTotalSpent(bookingData, roomData)
+//     msgUserName.innerText = `${guest.name}!`;
+//     totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
+// }
 
 const fetchData = () => {
   console.log("PAGE LOAD")
@@ -68,7 +68,7 @@ const pageLoad = (data) => {
   instantiateRoom(roomData)
   instanstiateBooking(bookingData)
   instantiateGuest(guestData)
-  displayUserInfo(bookingData, roomData);
+  domUpdates.displayUserInfo(bookingData, roomData);
 }
 
 const instanstiateBooking = (bookingData) => {
@@ -97,6 +97,11 @@ const instantiateGuest = (guestData) => {
   });
   return guests;
 }
+
+export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest}
+
+
+
 
 
 window.addEventListener('load', fetchData);
