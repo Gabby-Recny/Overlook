@@ -13,7 +13,8 @@ const msgUserName = document.getElementById('msgUserName');
 const totalSpent = document.getElementById('totalSpent');
 const calendarSubmit = document.getElementById('calendarSubmit');
 const calendarForm = document.getElementById('date');
-const upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
+let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
+let pastRoomGrid = document.getElementById('pastRoomGrid')
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 
@@ -102,24 +103,24 @@ const domUpdates = {
     displayPastBookings(bookingData, roomData) {
       let guestBookings = guest.getPastBookings(currentDate, bookingData);
       guestBookings.forEach(booking => {
-        let room = roomData.filter(room => room.number === booking.roomNumber);
-        pastBookings.innerHTML += `
+        let pastRoom = roomData.filter(room => room.number === booking.roomNumber);
+        pastRoomsGrid.innerHTML += `
         <article class='past-room-card'>
-            <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Photo of the ${room.type}>
+            <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Photo of the ${pastRoom.type}>
           <div class='past-booking-info'>
           <p id='pastDate'>${booking.date}</p>
-          <p id='pastRoomType'>${room.type}</p>
-          <p id'pastCost'>$${room.costPerNight} per night</p>
+          <p id='pastRoomType'>${pastRoom.type}</p>
+          <p id'pastCost'>$${pastRoom.costPerNight} per night</p>
        </div>
      </article>
      `
       })
     },
     displayUpcomingBookings(bookingData, roomData) {
-      let guestBookings = guest.getUpcomingBookings(currentDate, bookingData);
-      guestBookings.forEach(booking => {
+      let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
+      upcomingGuestBookings.forEach(booking => {
       let room = roomData.filter(room => room.number === booking.roomNumber);
-      upcomingRoomsGrid += `
+      upcomingRoomsGrid.innerHTML += `
         <article class='room-card'>
           <div class='booking-info'>
             <p id='upcomingDate'>${booking.date}</p>
@@ -131,7 +132,7 @@ const domUpdates = {
             <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
           </div>
         </article>`
-      }
+      })
   },
 }
 
