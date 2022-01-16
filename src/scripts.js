@@ -20,73 +20,83 @@ import {
   navLogIn,
   navLogOut,
   mainBookingBtn,
+  msgUserName,
+  totalSpent,
 } from './domUpdates.js';
 import User from './classes/User.js';
+import Room from './classes/Room.js';
+import Booking from './classes/Booking.js';
 
-let randomUser;
+let guestData;
+let bookingData;
+let roomData;
+let bookings;
+let rooms;
+let booking;
+let guests;
+let room;
+let guest;
+
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
-
-
-const fetchData = () => {
-  Promise.all([
-    fetchCustomersAPI(),
-    fetchOneCustomerAPI(2),
-    fetchBookingAPI(),
-    fetchRoomsAPI(),
-  ]).then(data => {
-    console.log("Customers", data[0])
-    console.log("Single Customer", data[1])
-    console.log("Bookings", data[2])
-    console.log("Rooms", data[3])
-    randomUser = new User(data[1]);
-    getRandomUser();
-  }).catch(error => console.log(error));
-  console.log("Random USer", randomUser)
-
-}
-// const pageLoad = (data) => {
-//   console.log(data)
-//   // msgUserName.innerHTML = "MICHA";
-//   randomUser = new User(data[0][getRandomIndex(data[0])]);
-//   getRandomUser();
-//
-// }
-
-
-
-
-
-const msgUserName = document.getElementById('msgUserName');
 
 const getRandomIndex = (arr) => {
   return Math.floor(Math.random() * arr.length);
 }
 
-const getRandomUser = () => {
-    msgUserName.innerHTML = `${randomUser.name}!`;
+const displayUserInfo = (bookingData, roomData) => {
+  guest.calculateTotalSpent(bookingData, roomData)
+    msgUserName.innerText = `${guest.name}!`;
+    totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
 }
 
-console.log('This is the JavaScript entry file - your code begins here.');
+const fetchData = () => {
+  console.log("PAGE LOAD")
+  Promise.all([
+    fetchCustomersAPI(),
+    fetchBookingAPI(),
+    fetchRoomsAPI(),
+  ]).then(data => pageLoad(data))
+}
 
-// const fetchData = () => {
-//   console.log("PAGE LOAD")
-//   Promise.all([
-//     fetchCustomersAPI(),
-//     fetchOneCustomerAPI(2),
-//     fetchBookingAPI(),
-//     fetchRoomsAPI(),
-//   ]).then(data => pageLoad(data))
-// }
-//
-// const pageLoad = (data) => {
-//   console.log(data)
-//   // msgUserName.innerHTML = "MICHA";
-//   randomUser = new User(data[0][getRandomIndex(data[0])]);
-//   getRandomUser();
-//
-// }
+const pageLoad = (data) => {
+  console.log(data)
+  guestData = data[0].customers;
+  bookingData = data[1].bookings;
+  roomData = data[2].rooms;
+  instantiateRoom(roomData)
+  instanstiateBooking(bookingData)
+  instantiateGuest(guestData)
+  displayUserInfo(bookingData, roomData);
+}
+
+const instanstiateBooking = (bookingData) => {
+  bookings = [];
+  bookingData.forEach(bookingObj => {
+    booking = new Booking(bookingObj);
+    bookings.push(booking);
+  });
+  return bookings;
+}
+
+const instantiateRoom = () => {
+  const rooms = [];
+  roomData.forEach(roomObj => {
+    room = new Room(roomObj);
+    rooms.push(room);
+  });
+  return rooms;
+}
+
+const instantiateGuest = (guestData) => {
+  guests = [];
+  guestData.forEach(guestObj => {
+    guest = new User (guestObj);
+    guests.push(guest);
+  });
+  return guests;
+}
 
 
 window.addEventListener('load', fetchData);

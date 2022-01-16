@@ -9,6 +9,8 @@ const navViewRooms = document.getElementById('navViewRooms');
 const navLogOut = document.getElementById('navLogOut');
 const navLogIn = document.getElementById('navLogIn');
 const mainBookingBtn = document.getElementById('mainBookingBtn');
+const msgUserName = document.getElementById('msgUserName');
+const totalSpent = document.getElementById('totalSpent');
 
 
 
@@ -67,8 +69,8 @@ const domUpdates = {
       roomsPage,
       logInPage
     ])
-  }
+  },
 };
 
 export default domUpdates;
-  export {navLogIn, navBooking, navViewRooms, mainBookingBtn, navAccount};
+  export {navLogIn, navBooking, navViewRooms, mainBookingBtn, navAccount, msgUserName, totalSpent};
