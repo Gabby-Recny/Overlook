@@ -106,13 +106,13 @@ const domUpdates = {
         let pastRoom = roomData.filter(room => room.number === booking.roomNumber);
         pastRoomsGrid.innerHTML += `
         <article class='past-room-card'>
-            <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Photo of the ${pastRoom.type}>
+          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="${pastRoom.type}">
           <div class='past-booking-info'>
-          <p id='pastDate'>${booking.date}</p>
-          <p id='pastRoomType'>${pastRoom.type}</p>
-          <p id'pastCost'>$${pastRoom.costPerNight} per night</p>
-       </div>
-     </article>
+            <p id='pastDate'>${booking.date}</p>
+            <p id='pastRoomType'>${pastRoom.type}</p>
+            <p id'pastCost'>$${pastRoom.costPerNight} per night</p>
+          </div>
+        </article>
      `
       })
     },
