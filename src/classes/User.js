@@ -1,6 +1,7 @@
 import dayjs from '../scripts.js';
 import currentDate from '../scripts.js';
 import isSameOrAfter from '../scripts.js';
+// dayjs.extend(isSameOrAfter);
 
 class User {
   constructor(user, bookingData, roomData) {
@@ -36,7 +37,7 @@ class User {
   sortBookings(currentDate, bookingData) {
     this.getUserBookings(bookingData)
     this.bookings.forEach(booking => {
-      if (currentDate === booking.date || currentDate > booking.date) {
+      if (currentDate.isSameOrAfter(booking.date, 'year')) {
         console.log("SAME SAME")
         this.upcomingBookings.push(booking);
         return this.upcomingBookings;
