@@ -45,12 +45,6 @@ const getRandomIndex = (arr) => {
   return Math.floor(Math.random() * arr.length);
 }
 
-// const displayUserInfo = (bookingData, roomData) => {
-//   guest.calculateTotalSpent(bookingData, roomData)
-//     msgUserName.innerText = `${guest.name}!`;
-//     totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
-// }
-
 const fetchData = () => {
   console.log("PAGE LOAD")
   Promise.all([
