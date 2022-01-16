@@ -12,7 +12,7 @@ class User {
   }
   //SAD PATH FOR USER BOOKINGS
   getUserBookings(bookingData) {
-    // console.log(1, 'GET USER BOOKINGS user line 15', bookingData)
+    console.log('git that book')
     bookingData.forEach(booking => {
       if (this.id === booking.userID) {
         this.bookings.push(booking)
@@ -21,7 +21,6 @@ class User {
     return this.bookings;
   }
   calculateTotalSpent(bookingData, roomData) {
-    console.log(2, 'user line 25', bookingData)
     this.getUserBookings(bookingData)
     const totalAmt = this.bookings.reduce((acc, booking) => {
       let findRoom = roomData.filter(room => {
@@ -48,13 +47,12 @@ class User {
   getUpcomingBookings(currentDate, bookingData) {
     this.getUserBookings(bookingData)
     this.bookings.forEach(booking => {
-        if (currentDate === booking.date || currentDate > booking.date) {
-          this.upcomingBookings.push(booking);
-        }
+      if ((currentDate === booking.date) || (currentDate > booking.date)) {
+        this.upcomingBookings.push(booking);
       }
-      return this.upcomingBookings
-    }
+    })
+    return this.upcomingBookings;
+  }
 }
 
-
-      export default User;
+export default User;

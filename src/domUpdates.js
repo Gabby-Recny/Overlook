@@ -88,31 +88,28 @@ const domUpdates = {
       domUpdates.displayUserInfo(bookingData, roomData)
     },
     displayUserInfo(bookingData, roomData) {
-      console.log(3, 'line 88 domUpdates', bookingData)
       guest.getUserBookings(bookingData);
       guest.calculateTotalSpent(bookingData, roomData);
       msgUserName.innerText = `${guest.name}!`;
-      totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
-      domUpdates.displayPastBookings(bookingData, roomData)
-      domUpdates.displayUpcomingBookings(bookingData, roomData)
+      totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`;
+      domUpdates.displayPastBookings(bookingData, roomData);
+      domUpdates.displayUpcomingBookings(bookingData, roomData);
     },
     accessDate(event) {
       event.preventDefault();
       console.log(calendarForm.value)
     },
     displayPastBookings(bookingData, roomData) {
-      console.log(4)
       let guestBookings = guest.getPastBookings(currentDate, bookingData);
-      console.log("LINE 104", guestBookings)
       guestBookings.forEach(booking => {
         let room = roomData.filter(room => room.number === booking.roomNumber);
         pastBookings.innerHTML += `
-     <article class='past-room-card'>
-       <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Photo of the ${room.type}>
-       <div class='past-booking-info'>
-         <p id='pastDate'>${booking.date}</p>
-         <p id='pastRoomType'>${room.type}</p>
-         <p id'pastCost'>$${room.costPerNight} per night</p>
+        <article class='past-room-card'>
+            <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Photo of the ${room.type}>
+          <div class='past-booking-info'>
+          <p id='pastDate'>${booking.date}</p>
+          <p id='pastRoomType'>${room.type}</p>
+          <p id'pastCost'>$${room.costPerNight} per night</p>
        </div>
      </article>
      `
@@ -123,32 +120,30 @@ const domUpdates = {
       guestBookings.forEach(booking => {
       let room = roomData.filter(room => room.number === booking.roomNumber);
       upcomingRoomsGrid += `
-          <article class='room-card'>
-              <div class='booking-info'>
-                <p id='upcomingDate'>${booking.date}</p>
-                <p id='upcomingRoomType'>${room.type}</p>
-              </div>
-              <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
-              <div class='cost-and-bed-type'>
-                <h3 id='upcomingCost'>$${room.costPerNight} per night</h3>
-                <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
-              </div>
-          </article>
-          `
-        }
+        <article class='room-card'>
+          <div class='booking-info'>
+            <p id='upcomingDate'>${booking.date}</p>
+            <p id='upcomingRoomType'>${room.type}</p>
+          </div>
+            <img class='room-photo' src="https:/loremflickr.com/640/360"  alt="Random Photo">
+          <div class='cost-and-bed-type'>
+            <h3 id='upcomingCost'>$${room.costPerNight} per night</h3>
+            <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
+          </div>
+        </article>`
       }
+  },
+}
 
+export default domUpdates;
+export {
+  navLogIn,
+  navBooking,
+  navViewRooms,
+  mainBookingBtn,
+  navAccount,
+  msgUserName,
+  totalSpent,
+  calendarForm,
+  calendarSubmit,
 };
-
-      export default domUpdates;
-      export {
-        navLogIn,
-        navBooking,
-        navViewRooms,
-        mainBookingBtn,
-        navAccount,
-        msgUserName,
-        totalSpent,
-        calendarForm,
-        calendarSubmit,
-      };
