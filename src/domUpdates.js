@@ -82,17 +82,35 @@ const domUpdates = {
       bookingPage,
       roomsPage,
       logInPage
-    ])
+    ]);
+    domUpdates.displayUserInfo(bookingData, roomData)
   },
   displayUserInfo(bookingData, roomData) {
     guest.calculateTotalSpent(bookingData, roomData)
     msgUserName.innerText = `${guest.name}!`;
     totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`
+    domUpdates.displayPastBookings(bookingData, roomData)
   },
   accessDate(event) {
     event.preventDefault();
     console.log(calendarForm.value)
   },
+  displayPastBookings(bookings, rooms) {
+   console.log("DISPLAY PAST BOOKINGS")
+   let guestBookings = guest.sortBookings();
+   console.log(guestBookings)
+   pastBookings.innerHTML += `
+   <article class='past-room-card'>
+     // <img class='past-room-photo' src="${room.image}"  alt="Photo of the ${room.type}">
+     <div class='past-booking-info'>
+       <p id='pastDate'>${booking.date}</p>
+       <p id='pastRoomType'>${room.type}</p>
+       <p id'pastCost'>$${room.costPerNight} per night</p>
+     </div>
+   </article>
+   `
+ },
+
 };
 
 export default domUpdates;
