@@ -1,3 +1,6 @@
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
+
 import { expect } from 'chai';
 import sampleCustomers from '../src/data/sampleCustomers.js';
 import User from '../src/classes/User.js';
@@ -37,7 +40,6 @@ describe('User', () => {
   it('Should have a way to store bookings', () => {
     expect(user1.bookings).to.deep.equal([]);
     expect(user2.bookings).to.deep.equal([]);
-
   })
   it('Should be able to have past bookings', () => {
     expect(user1.pastBookings).to.deep.equal([]);
@@ -58,6 +60,14 @@ describe('User', () => {
   it('Should calculate total amount the user has spent', () => {
     user1.getUserBookings(sampleBookings);
     user1.calculateTotalSpent(sampleBookings, sampleRooms);
-    expect(user1.totalSpent).to.equal(920.58);
+    expect(user1.calculateTotalSpent(sampleBookings, sampleRooms)).to.equal(2761.74);
+  })
+  it(`Should access user's past bookings`, () => {
+    user1.getPastBookings(currentDate, sampleBookings);
+    expect(user1.pastBookings.length).to.deep.equal(1);
+  })
+  it(`Should access user's upcoming bookings`, () => {
+    user1.getUpcomingBookings(currentDate, sampleBookings);
+    expect(user1.upcomingBookings.length).to.deep.equal(1)
   })
 });
