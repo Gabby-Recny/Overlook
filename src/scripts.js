@@ -25,7 +25,7 @@ import {
   totalSpent,
   calendarForm,
   calendarSubmit,
-  checkboxDropdownList,
+  roomOptions
 } from './domUpdates.js';
 import User from './classes/User.js';
 import Room from './classes/Room.js';
@@ -120,3 +120,6 @@ navAccount.addEventListener('click', () => {
 calendarSubmit.addEventListener('click', (event) => {
   domUpdates.accessDate(event)
 });
+filterRoomsBtn.addEventListener('click', (event) => {
+  domUpdates.accessType(event)
+})

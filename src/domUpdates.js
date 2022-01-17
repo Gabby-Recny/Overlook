@@ -13,14 +13,14 @@ const msgUserName = document.getElementById('msgUserName');
 const totalSpent = document.getElementById('totalSpent');
 const calendarSubmit = document.getElementById('calendarSubmit');
 const calendarForm = document.getElementById('date');
-const checkboxDropdownList = document.querySelector('.room-type-dropdown');
 let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
 let pastRoomGrid = document.getElementById('pastRoomGrid')
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 const bookingGrid = document.getElementById('bookingGrid');
-const roomTypeDropdown = document.getElementById('roomTypeDropdown');
-const roomTypeBtn = document.getElementById('dropdownBtn');
+const filteredRooms = document.getElementById('filteredRooms');
+const filterRoomsBtn = document.getElementById('filterRoomsBtn');
+const roomOptions = document.getElementById('roomOptions');
 
 
 import {
@@ -159,6 +159,27 @@ const domUpdates = {
       </article>`
     })
   },
+  accessType() {
+    event.preventDefault()
+    domUpdates.displayRoomType(roomOptions.value)
+  },
+  displayRoomType(roomType) {
+    hotel.findRoomsByType(roomType)
+    bookingGrid.innerHTML = '';
+    hotel.typeOfRooms.forEach(room => {
+      bookingGrid.innerHTML +=
+      `<article class='room-card'>
+          <div class='booking-info'>
+            <p id='upcomingRoomType'>${room.roomType}</p>
+          </div>
+          <img class='room-photo' src="https://loremflickr.com/640/360"  alt="${room.roomType}">
+          <div class='cost-and-bed-type'>
+            <h3 id='upcomingCost'>$${room.costPerNight}</h3>
+            <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
+          </div>
+      </article>`
+    })
+  }
 }
 
 export default domUpdates;
@@ -172,7 +193,8 @@ export {
   totalSpent,
   calendarForm,
   calendarSubmit,
-  checkboxDropdownList,
   bookingGrid,
-  roomTypeDropdown
+  filteredRooms,
+  filterRoomsBtn,
+  roomOptions
 };
