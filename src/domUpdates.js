@@ -19,6 +19,8 @@ let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
 let pastRoomGrid = document.getElementById('pastRoomGrid')
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
+const bookingGrid = document.getElementById('bookingGrid');
+
 
 import {
   guestData,
@@ -30,6 +32,7 @@ import {
   // guests,
   room,
   guest,
+  hotel,
 } from './scripts.js';
 
 
@@ -98,10 +101,6 @@ const domUpdates = {
       domUpdates.displayPastBookings(bookingData, roomData);
       domUpdates.displayUpcomingBookings(bookingData, roomData);
     },
-    accessDate(event) {
-      event.preventDefault();
-      console.log(calendarForm.value)
-    },
     displayPastBookings(bookingData, roomData) {
       let guestBookings = guest.getPastBookings(currentDate, bookingData);
       guestBookings.forEach(booking => {
@@ -138,6 +137,36 @@ const domUpdates = {
         </article>`
       })
   },
+  accessDate(event) {
+    event.preventDefault();
+    let date = calendarForm.value.split(' ').join('/')
+    domUpdates.displayAvailableRooms(date, event)
+  },
+  displayAvailableRooms(selectedDate) {
+    hotel.findUnavailableRooms(selectedDate, bookingData);
+    hotel.findAvailableRooms(selectedDate)
+
+    bookingGrid.innerHTML = '';
+    hotel.availableRooms.forEach(room => {
+      bookingGrid.innerHTML +=
+      `<article class='room-card'>
+          <div class='booking-info'>
+            <p id='upcomingRoomType'>${room.roomType}</p>
+          </div>
+          <img class='room-photo' src="https://loremflickr.com/640/360"  alt="${room.roomType}">
+          <div class='cost-and-bed-type'>
+            <h3 id='upcomingCost'>$${room.costPerNight}</h3>
+            <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
+          </div>
+      </article>`
+    })
+  },
+  accessRoomType() {
+    event.preventDefault();
+    if (checkboxDropdownList) {
+      console.log(roomTypeDropdown.value)
+    }
+  }
 }
 
 export default domUpdates;
@@ -152,4 +181,6 @@ export {
   calendarForm,
   calendarSubmit,
   checkboxDropdownList,
+  bookingGrid,
+  roomTypeDropdown
 };

@@ -1,13 +1,8 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
+//Dependents
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
-// export isSameOrAfter = require(‘dayjs/plugin/isSameOrAfter');
-// import dayjs from '../scripts.js';
-// import currentDate from '../scripts.js';
-// import isSameOrAfter from ‘../scripts.js';
+
+//Imports
 import './css/base.scss';
 import {
         fetchCustomersAPI,
@@ -35,7 +30,10 @@ import {
 import User from './classes/User.js';
 import Room from './classes/Room.js';
 import Booking from './classes/Booking.js';
+import Hotel from './classes/Hotel.js';
 
+
+//Global Variables
 let guestData;
 let bookingData;
 let roomData;
@@ -45,17 +43,14 @@ let booking;
 let guests;
 let room;
 let guest;
+let hotel;
 
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
 
 const getRandomIndex = (arr) => {
   return Math.floor(Math.random() * arr.length);
 }
 
 const fetchData = () => {
-  console.log("PAGE LOAD")
   Promise.all([
     fetchCustomersAPI(),
     fetchBookingAPI(),
@@ -65,14 +60,17 @@ const fetchData = () => {
 }
 
 const pageLoad = (data) => {
-  console.log(data)
   guestData = data[0].customers;
   bookingData = data[1].bookings;
   roomData = data[2].rooms;
-  // instantiateRoom(roomData)
-  // instanstiateBooking(bookingData)
+  instantiateData(guestData, roomData, bookingData)
+}
+
+const instantiateData = (guestData, roomData, bookingData) => {
+  instantiateHotel (roomData, bookingData)
   instantiateGuest(guestData)
 }
+
 
 // const instanstiateBooking = (bookingData) => {
 //   bookings = [];
@@ -89,7 +87,6 @@ const pageLoad = (data) => {
 //     room = new Room(roomObj);
 //     rooms.push(room);
 //   });
-//   console.log('line 91', rooms)
 //   return rooms;
 // }
 
@@ -99,13 +96,13 @@ const instantiateGuest = (guestData) => {
     guest = new User (guestObj);
     guests.push(guest);
   });
-  const title = document.querySelector('.title');
-  title.innerHTML = guests[2].name
-  // user = new User(data[0][getRandomIndex(data[0])]);
-  // return guests;
 }
 
-export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest}
+const instantiateHotel = (roomData, bookingData) => {
+  hotel = new Hotel(roomData, bookingData)
+}
+
+export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel}
 
 window.addEventListener('load', fetchData);
 navLogIn.addEventListener('click', () => {
@@ -120,11 +117,13 @@ navBooking.addEventListener('click', () => {
 navAccount.addEventListener('click', () => {
   domUpdates.displayAccountPage(bookingData, roomData)
 })
-calendarSubmit.addEventListener('click', () => {
+calendarSubmit.addEventListener('click', (event) => {
   domUpdates.accessDate(event)
+  // domUpdates.displayAvailableRooms(date)
 });
 roomTypeDropdown.addEventListener('click', () => {
   roomTypeDropdown.classList.toggle("is-active");
+  domUpdates.accessRoomType()
 });
 checkboxDropdownList.addEventListener('click', (event) => {
   event.stopPropagation();
