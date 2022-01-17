@@ -31,9 +31,6 @@ describe('Hotel', () => {
   it('Should have access to booking info', () => {
     expect(hotel.bookings).to.equal(sampleBookings);
   })
-  it('Should have a list of available rooms', () => {
-    expect(hotel.unavailableRooms).to.deep.equal([]);
-  })
   it('Should access room information for bookings', () => {
     let bookedRoom = hotel.getRoomInfo(booking1);
     expect(bookedRoom.number).to.equal(15);

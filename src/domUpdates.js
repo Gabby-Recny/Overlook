@@ -13,13 +13,14 @@ const msgUserName = document.getElementById('msgUserName');
 const totalSpent = document.getElementById('totalSpent');
 const calendarSubmit = document.getElementById('calendarSubmit');
 const calendarForm = document.getElementById('date');
-const roomTypeDropdown = document.getElementById('roomTypeDropdown');
 const checkboxDropdownList = document.querySelector('.room-type-dropdown');
 let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
 let pastRoomGrid = document.getElementById('pastRoomGrid')
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 const bookingGrid = document.getElementById('bookingGrid');
+const roomTypeDropdown = document.getElementById('roomTypeDropdown');
+const roomTypeBtn = document.getElementById('dropdownBtn');
 
 
 import {
@@ -105,8 +106,6 @@ const domUpdates = {
       let guestBookings = guest.getPastBookings(currentDate, bookingData);
       guestBookings.forEach(booking => {
         let pastRoom = roomData.find(room => room.number === booking.roomNumber);
-        console.log(107, "Past Room:", pastRoom);
-        console.log(108, "Past Booking", booking)
         pastRoomsGrid.innerHTML += `
         <article class='past-room-card'>
           <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="${pastRoom.roomType}">
@@ -140,11 +139,10 @@ const domUpdates = {
   accessDate(event) {
     event.preventDefault();
     let date = calendarForm.value.split(' ').join('/')
-    domUpdates.displayAvailableRooms(date, event)
+    domUpdates.displayRoomsByDate(date)
   },
-  displayAvailableRooms(selectedDate) {
-    hotel.findUnavailableRooms(selectedDate, bookingData);
-    hotel.findAvailableRooms(selectedDate)
+  displayRoomsByDate(selectedDate) {
+    hotel.findAvailableRooms(selectedDate, bookingData)
 
     bookingGrid.innerHTML = '';
     hotel.availableRooms.forEach(room => {
@@ -161,12 +159,6 @@ const domUpdates = {
       </article>`
     })
   },
-  accessRoomType() {
-    event.preventDefault();
-    if (checkboxDropdownList) {
-      console.log(roomTypeDropdown.value)
-    }
-  }
 }
 
 export default domUpdates;

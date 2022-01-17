@@ -119,12 +119,4 @@ navAccount.addEventListener('click', () => {
 })
 calendarSubmit.addEventListener('click', (event) => {
   domUpdates.accessDate(event)
-  // domUpdates.displayAvailableRooms(date)
-});
-roomTypeDropdown.addEventListener('click', () => {
-  roomTypeDropdown.classList.toggle("is-active");
-  domUpdates.accessRoomType()
-});
-checkboxDropdownList.addEventListener('click', (event) => {
-  event.stopPropagation();
 });
