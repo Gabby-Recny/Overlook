@@ -75,34 +75,61 @@
     </form>
   </section>
   <section class='booking-page hidden' id='bookingPage'>
-    <h1>BOOKING PAGEEEEEE</h1>
-    <article class='calendar'>
-      <form>
-        <div class="nativeDatePicker">
-          <label for="date">Pick a date</label>
-          <input type="date" id="date" name="date">
-          <input type='submit' id='calendarSubmit'>
-          <span class="validity"></span>
+    <h1 class='booking-title'>BOOKING PAGEEEEEE</h1>
+      <article class='reservation-info'>
+        <div class='calendar-section'>
+          <form class='calendar'>
+            <div class="nativeDatePicker">
+              <label for="date">Pick a date</label>
+              <input type="date" id="date" name="date">
+              <input type='submit' id='calendarSubmit'>
+              <span class="validity"></span>
+            </div>
+          </form>
         </div>
-      </form>
-    </article>
-    <div class="room-type-dropdown">
-      What kind of room would you like?
-      <ul class="checkbox-dropdown-list">
-        <li>
-          <label><input type="checkbox" value="Vejle" name="room-type" />residential suite</label>
-        </li>
-        <li>
-          <label><input type="checkbox" value="Horsens" name="room-type" />junior suite</label>
-        </li>
-        <li>
-          <label><input type="checkbox" value="Kolding" name="room-type" />single room</label>
-        </li>
-        <li>
-          <label><input type="checkbox" value="Kolding" name="room-type" />LA</label>
-        </li>
-      </ul>
-    </div>
+        <div class="room-type-dropdown" id="roomTypeDropdown">
+          What kind of room would you like?
+          <ul class="checkbox-dropdown-list" id='checkboxDropdownList'>
+              <li>
+                <label><input type="checkbox" value="Vejle" name="room-type" />residential suite</label>
+              </li>
+              <li>
+                <label><input type="checkbox" value="Horsens" name="room-type" />junior suite</label>
+              </li>
+              <li>
+                <label><input type="checkbox" value="Kolding" name="room-type" />single room</label>
+              </li>
+              <li>
+                <label><input type="checkbox" value="Kolding" name="room-type" />suite</label>
+              </li>
+            </ul>
+          </div>
+        </article>
+        <section class='booking-grid'>
+          <article class='room-card'>
+              <div class='booking-info'>
+                <p id='upcomingDate'>Jan 11, 2011</p>
+                <p id='upcomingRoomType'>Single Room</p>
+              </div>
+              <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+              <div class='cost-and-bed-type'>
+                <h3 id='upcomingCost'>$3954</h3>
+                <h3 class='room-bed-type' id='upcomingBedType'>King</h3>
+              </div>
+          </article>
+          <article class='room-card'>
+              <div class='booking-info'>
+                <p id='upcomingDate'>Jan 11, 2011</p>
+                <p id='upcomingRoomType'>Single Room</p>
+              </div>
+              <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+              <div class='cost-and-bed-type'>
+                <h3 id='upcomingCost'>$3954</h3>
+                <h3 class='room-bed-type' id='upcomingBedType'>King</h3>
+              </div>
+          </article>
+        </section>
+      </section>
     <section class='rooms-page hidden' id='roomsPage'>
       <h1>ROOMS PAGE</h1>
     </section>

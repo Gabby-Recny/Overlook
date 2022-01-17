@@ -13,6 +13,8 @@ const msgUserName = document.getElementById('msgUserName');
 const totalSpent = document.getElementById('totalSpent');
 const calendarSubmit = document.getElementById('calendarSubmit');
 const calendarForm = document.getElementById('date');
+const roomTypeDropdown = document.getElementById('roomTypeDropdown');
+const checkboxDropdownList = document.querySelector('.room-type-dropdown');
 let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
 let pastRoomGrid = document.getElementById('pastRoomGrid')
 const dayjs = require('dayjs');
@@ -149,4 +151,5 @@ export {
   totalSpent,
   calendarForm,
   calendarSubmit,
+  checkboxDropdownList,
 };
