@@ -21,6 +21,8 @@ const bookingGrid = document.getElementById('bookingGrid');
 const filteredRooms = document.getElementById('filteredRooms');
 const filterRoomsBtn = document.getElementById('filterRoomsBtn');
 const roomOptions = document.getElementById('roomOptions');
+const bookingBtn = document.querySelector('.booking-btn');
+const roomCard = document.querySelector('.room-card');
 
 
 import {
@@ -136,6 +138,9 @@ const domUpdates = {
         </article>`
       })
   },
+  displayApologies() {
+    bookingGrid.innerText += ` It appears we have no rooms available that match your criterea. We would love to have you stop by! Try changing your date or room preferances.`
+  },
   accessDate(event) {
     event.preventDefault();
     let date = calendarForm.value.split(' ').join('/')
@@ -145,6 +150,9 @@ const domUpdates = {
     hotel.findAvailableRooms(selectedDate, bookingData)
 
     bookingGrid.innerHTML = '';
+    if (hotel.availableRooms.length === 0) {
+      domUpdates.displayApologies()
+    }
     hotel.availableRooms.forEach(room => {
       bookingGrid.innerHTML +=
       `<article class='room-card'>
@@ -156,6 +164,7 @@ const domUpdates = {
             <h3 id='upcomingCost'>$${room.costPerNight}</h3>
             <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
           </div>
+        <button class='booking-btn' id='${room.number}'>BOOK NOW</button>
       </article>`
     })
   },
@@ -166,6 +175,9 @@ const domUpdates = {
   displayRoomType(roomType) {
     hotel.findRoomsByType(roomType)
     bookingGrid.innerHTML = '';
+    if (hotel.typeOfRooms.length === 0) {
+      domUpdates.displayApologies()
+    }
     hotel.typeOfRooms.forEach(room => {
       bookingGrid.innerHTML +=
       `<article class='room-card'>
@@ -177,8 +189,25 @@ const domUpdates = {
             <h3 id='upcomingCost'>$${room.costPerNight}</h3>
             <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
           </div>
+        <button class='booking-btn' id='${room.number}'>BOOK NOW</button>
       </article>`
     })
+  },
+  bookRoom(event, roomData) {
+    if(event.target.className === 'booking-btn') {
+      let bookedRoom = roomData.find(room => {
+        return room.number === parseInt(event.target.id)
+      })
+      createReservation(bookedRoom)
+    }
+  },
+  createReservation(bookedRoom) {
+
+  },
+  displayReservations() {
+    bookingGrid.innerHTML = '';
+    bookingGrid.innerText += `Thank you for booking with us.`
+    console.log('Thank you for booking with us.')
   }
 }
 
@@ -196,5 +225,7 @@ export {
   bookingGrid,
   filteredRooms,
   filterRoomsBtn,
-  roomOptions
+  roomOptions,
+  bookingBtn,
+  roomCard,
 };

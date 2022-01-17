@@ -25,7 +25,10 @@ import {
   totalSpent,
   calendarForm,
   calendarSubmit,
-  roomOptions
+  roomOptions,
+  bookingBtn,
+  roomCard,
+  bookingGrid
 } from './domUpdates.js';
 import User from './classes/User.js';
 import Room from './classes/Room.js';
@@ -122,4 +125,7 @@ calendarSubmit.addEventListener('click', (event) => {
 });
 filterRoomsBtn.addEventListener('click', (event) => {
   domUpdates.accessType(event)
-})
+});
+bookingGrid.addEventListener('click', (event) => {
+  domUpdates.bookRoom(event, roomData);
+});

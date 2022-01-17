@@ -1,7 +1,7 @@
 const fetchCustomersAPI = () => {
   return fetch('http://localhost:3001/api/v1/customers')
   .then(response => response.json())
-  .catch(error => console.log(error))
+  .catch(error => console.log("Customer Error", error))
 }
 
 const fetchOneCustomerAPI = (id) => {
@@ -13,13 +13,13 @@ const fetchOneCustomerAPI = (id) => {
 const fetchBookingAPI = () => {
   return fetch('http://localhost:3001/api/v1/bookings')
     .then(response => response.json())
-    .catch(error => console.log(error))
+    .catch(error => console.log("Booking Error", error))
 }
 
 const fetchRoomsAPI = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
     .then(response => response.json())
-    .catch(error => console.log(error))
+    .catch(error => console.log("Rooms Error", error))
 }
 
 
