@@ -12,7 +12,6 @@ class User {
   }
   //SAD PATH FOR USER BOOKINGS
   getUserBookings(bookingData) {
-    console.log('git that book')
     bookingData.forEach(booking => {
       if (this.id === booking.userID) {
         this.bookings.push(booking)
@@ -30,7 +29,6 @@ class User {
       })
       return acc;
     }, 0);
-    // this.totalSpent = Math.round(totalAmt*100)/100;
     return Math.round(totalAmt * 100) / 100;
   }
 
