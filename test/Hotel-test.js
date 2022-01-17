@@ -32,12 +32,27 @@ describe('Hotel', () => {
     expect(hotel.bookings).to.equal(sampleBookings);
   })
   it('Should have a list of available rooms', () => {
-    expect(hotel.availableRooms).to.deep.equal([]);
+    expect(hotel.unavailableRooms).to.deep.equal([]);
   })
   it('Should access room information for bookings', () => {
     let bookedRoom = hotel.getRoomInfo(booking1);
     expect(bookedRoom.number).to.equal(15);
     expect(bookedRoom.roomType).to.equal('residential suite');
     expect(bookedRoom.costPerNight).to.equal(294.56);
+  });
+  it('Should be able to filter bookings by date', () => {
+    hotel.findUnavailableRooms("2022/01/11",sampleBookings)
+    expect(hotel.unavailableRooms.length).to.deep.equal(1)
+  })
+  it('Should be able to get available rooms', () => {
+    hotel.findUnavailableRooms("2022/01/11", sampleBookings)
+    hotel.findAvailableRooms("2022/01/11");
+    expect(hotel.availableRooms.length).to.deep.equal(4);
+  })
+  it('Should be able to filter rooms by suite type', () => {
+    hotel.findUnavailableRooms("2022/01/11", sampleBookings)
+    hotel.findAvailableRooms("2022/01/11");
+    hotel.findRoomsByType('suite');
+    expect(hotel.typeOfRooms.length).to.deep.equal(1);
   })
 });
