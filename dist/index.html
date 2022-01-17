@@ -9,6 +9,7 @@
 </head>
 <!DOCTYPE html>
 <html lang="en">
+
 <body>
   <nav class="nav-bar">
     <h1 class='title'>Overlook</h1>
@@ -75,7 +76,7 @@
   </section>
   <section class='booking-page hidden' id='bookingPage'>
     <h1>BOOKING PAGEEEEEE</h1>
-    <section class='calendar'>
+    <article class='calendar'>
       <form>
         <div class="nativeDatePicker">
           <label for="date">Pick a date</label>
@@ -84,24 +85,28 @@
           <span class="validity"></span>
         </div>
       </form>
-    </section>
-    <section class='drop-down'>
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        My account
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">My cart</a></li>
-        <li><a class="dropdown-item" href="#">My orders</a></li>
-        <li><a class="dropdown-item" href="#">My details</a></li>
-        <li role="separator" class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Log out</a></li>
+    </article>
+    <div class="room-type-dropdown">
+      What kind of room would you like?
+      <ul class="checkbox-dropdown-list">
+        <li>
+          <label><input type="checkbox" value="Vejle" name="room-type" />residential suite</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="Horsens" name="room-type" />junior suite</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="Kolding" name="room-type" />single room</label>
+        </li>
+        <li>
+          <label><input type="checkbox" value="Kolding" name="room-type" />LA</label>
+        </li>
       </ul>
-  </section>
-  <section class='rooms-page hidden' id='roomsPage'>
-    <h1>ROOMS PAGE</h1>
-  </section>
-  <script src="bundle.js"></script>
+    </div>
+    <section class='rooms-page hidden' id='roomsPage'>
+      <h1>ROOMS PAGE</h1>
+    </section>
+    <script src="bundle.js"></script>
 </body>
 
 </html>
