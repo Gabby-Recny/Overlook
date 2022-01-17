@@ -37,6 +37,7 @@ import {
   guest,
   hotel,
 } from './scripts.js';
+import {postBookingAPI }from './apiCalls.js';
 
 
 
@@ -198,11 +199,12 @@ const domUpdates = {
       let bookedRoom = roomData.find(room => {
         return room.number === parseInt(event.target.id)
       })
-      createReservation(bookedRoom)
+      domUpdates.createReservation(bookedRoom)
     }
   },
   createReservation(bookedRoom) {
-
+    console.log('ine 206', bookedRoom)
+    postBookingAPI(bookedRoom)
   },
   displayReservations() {
     bookingGrid.innerHTML = '';

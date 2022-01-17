@@ -9,6 +9,7 @@ import {
         fetchOneCustomerAPI,
         fetchRoomsAPI,
         fetchBookingAPI,
+        postBookingAPI
         } from './apiCalls.js';
 import domUpdates from './domUpdates.js';
 import {
@@ -58,6 +59,7 @@ const fetchData = () => {
     fetchCustomersAPI(),
     fetchBookingAPI(),
     fetchRoomsAPI(),
+    postBookingAPI(booking),
   ]).then(data => pageLoad(data))
     // .catch(error => console.log(error))
 }
@@ -105,7 +107,7 @@ const instantiateHotel = (roomData, bookingData) => {
   hotel = new Hotel(roomData, bookingData)
 }
 
-export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel}
+export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel, fetchData}
 
 window.addEventListener('load', fetchData);
 navLogIn.addEventListener('click', () => {
