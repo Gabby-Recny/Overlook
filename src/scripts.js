@@ -52,7 +52,6 @@ const pageLoad = (data) => {
 
 const instantiateGuest = (data) => {
   guest = new User(data)
-  console.log('scripts 55', guest)
   domUpdates.displayAccountPage(bookingData, roomData, guest)
 
 }
@@ -75,7 +74,6 @@ const lookUpGuest = (userNameId) => {
   console.log('line 72', userNameId)
   fetchOneCustomerAPI(userNameId)
   .then(data => {
-    console.log('Scripts line 75', data)
     instantiateGuest(data)
   })
   .catch(error => domUpdates.show([logInError]))

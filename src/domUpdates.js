@@ -77,7 +77,6 @@ const domUpdates = {
     ]);
   },
   displayAccountPage(bookingData, roomData, guest) {
-    console.log('domupdates line 80', guest)
     domUpdates.show([accountDashboard]);
     domUpdates.hide([
       homePage,
@@ -87,11 +86,8 @@ const domUpdates = {
     domUpdates.displayUserInfo(bookingData, roomData, guest)
   },
   displayUserInfo(bookingData, roomData, guest) {
-    console.log('dom line 89', guest)
-    guest.getUserBookings(bookingData)
-    guest.calculateTotalSpent(bookingData, roomData);
     msgUserName.innerText = `${guest.name}!`;
-    totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`;
+    totalSpent.innerHTML = `$${guest.calculateTotalSpent(bookingData, roomData)}`;
     domUpdates.displayPastBookings(bookingData, roomData);
     domUpdates.displayUpcomingBookings(bookingData, roomData);
   },
