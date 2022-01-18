@@ -38,13 +38,13 @@ const postBookingAPI = (bookedRoom) => {
     },
     body: JSON.stringify({
       userID: 50,
-      date: 'currentDate',
+      date: currentDate,
       roomNumber: bookedRoom.number
     })
   }).then(response => {
     if(response.ok) {
       fetchData()
-      domUpdates.displayReservations()
+      domUpdates.displaySuccessfulResMsg()
       return response.json()
     } else if (!response.ok) {
       // console.log("ERROROROROROR")
