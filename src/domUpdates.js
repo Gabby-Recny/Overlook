@@ -203,20 +203,27 @@ const domUpdates = {
     }
   },
   createReservation(bookedRoom) {
-    postBookingAPI(bookedRoom)
-    domUpdates.displayReservations()
+    setTimeout(() => {
+      postBookingAPI(bookedRoom)
+    }, 500)
+    // postBookingAPI(bookedRoom)
   },
   displayReservations() {
     console.log('Inside reservations')
     bookingGrid.innerHTML = '';
     bookingGrid.innerHTML += `<article class='loader'></article>`
     console.log('line 213')
-    setTimeout(domUpdates.displaySuccessfulResMsg, 3000)
+    domUpdates.displaySuccessfulResMsg()
+    // setTimeout(domUpdates.displaySuccessfulResMsg, 3000)
     console.log('Thank you for booking with us.')
   },
   displaySuccessfulResMsg() {
-    bookingGrid.innerHTML = '';
+    bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
+  },
+  displayErrorMsg(error) {
+    bookingGrid.innerHTML = ''
+    bookingGrid.innerHTML += "HELP"
   }
 }
 
