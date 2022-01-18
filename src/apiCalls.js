@@ -7,8 +7,8 @@ import {instantiateUser} from './scripts.js';
 
 const fetchCustomersAPI = () => {
   return fetch('http://localhost:3001/api/v1/customers')
-  .then(response => response.json())
-  .catch(error => domUpdates.displayErrorMsg())
+    .then(response => response.json())
+    .catch(error => domUpdates.displayErrorMsg())
 }
 
 const fetchOneCustomerAPI = (id) => {
@@ -34,7 +34,7 @@ const postBookingAPI = (bookedRoom) => {
   fetch('http://localhost:3001/api/v1/bookings', {
     method: 'POST',
     headers: {
-    'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       userID: guest.id,
@@ -42,7 +42,7 @@ const postBookingAPI = (bookedRoom) => {
       roomNumber: bookedRoom.number
     })
   }).then(response => {
-    if(response.ok) {
+    if (response.ok) {
       fetchData()
       domUpdates.displaySuccessfulResMsg()
       return response.json()

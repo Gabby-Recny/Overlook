@@ -23,7 +23,7 @@ describe('Hotel', () => {
     expect(Hotel).to.be.a('function');
   })
   it('Should be an instance of Hotel', () => {
-      expect(hotel).to.be.an.instanceof(Hotel);
+    expect(hotel).to.be.an.instanceof(Hotel);
   })
   it('Should have access to all of the rooms', () => {
     expect(hotel.rooms).to.equal(sampleRooms);
@@ -38,7 +38,7 @@ describe('Hotel', () => {
     expect(bookedRoom.costPerNight).to.equal(294.56);
   });
   it('Should be able to filter bookings by date', () => {
-    hotel.findUnavailableRooms("2022/01/11",sampleBookings)
+    hotel.findUnavailableRooms("2022/01/11", sampleBookings)
     expect(hotel.unavailableRooms.length).to.deep.equal(1)
   })
   it('Should be able to get available rooms', () => {
