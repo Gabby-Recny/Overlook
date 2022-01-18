@@ -76,16 +76,18 @@ const domUpdates = {
       accountDashboard,
     ]);
   },
-  displayAccountPage(bookingData, roomData) {
+  displayAccountPage(bookingData, roomData, guest) {
+    console.log('line 80', guest)
     domUpdates.show([accountDashboard]);
     domUpdates.hide([
       homePage,
       bookingPage,
       logInPage
     ]);
-    domUpdates.displayUserInfo(bookingData, roomData)
+    domUpdates.displayUserInfo(bookingData, roomData, guest)
   },
-  displayUserInfo(bookingData, roomData) {
+  displayUserInfo(bookingData, roomData, guest) {
+    console.log('dom line 89', guest)
     guest.getUserBookings(bookingData)
     guest.calculateTotalSpent(bookingData, roomData);
     msgUserName.innerText = `${guest.name}!`;
@@ -96,6 +98,8 @@ const domUpdates = {
   displayPastBookings(bookingData, roomData) {
     let guestBookings = guest.getPastBookings(currentDate, bookingData);
     let sortedBookings = guest.sortDescendingBookings(guestBookings)
+
+    pastRoomsGrid.innerHTML = '';
 
     sortedBookings.forEach(booking => {
       let pastRoom = roomData.find(room => room.number === booking.roomNumber);
@@ -114,6 +118,7 @@ const domUpdates = {
   displayUpcomingBookings(bookingData, roomData) {
     let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
     let sortedBookings = guest.sortAscendingBookings(upcomingGuestBookings)
+    upcomingRoomsGrid.innerHTML = '';
     upcomingGuestBookings.forEach(booking => {
       let room = roomData.find(room => room.number === booking.roomNumber);
       upcomingRoomsGrid.innerHTML += `
@@ -204,7 +209,8 @@ const domUpdates = {
     bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
     setTimeout(() => {
-      domUpdates.displayAccountPage()
+      domUpdates.displayUpcomingBookings(bookingData, roomData)
+      domUpdates.displayAccountPage(bookingData, roomData, guest)
     }, 3500)
   },
   displayErrorMsg() {

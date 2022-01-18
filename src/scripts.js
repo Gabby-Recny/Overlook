@@ -52,7 +52,6 @@ const pageLoad = (data) => {
 
 const instantiateGuest = (data) => {
   guest = new User(data)
-  console.log('Instantiate User: line 93', guest)
 }
 
 const logIn = (event) => {
@@ -86,7 +85,7 @@ navBooking.addEventListener('click', () => {
   domUpdates.displayBookingPage()
 });
 navAccount.addEventListener('click', () => {
-  domUpdates.displayAccountPage(bookingData, roomData)
+  domUpdates.displayAccountPage(bookingData, roomData, guest)
 })
 calendarSubmit.addEventListener('click', (event) => {
   domUpdates.accessDate(event)
