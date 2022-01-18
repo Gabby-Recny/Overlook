@@ -37,6 +37,7 @@ const postBookingAPI = (newBooking) => {
   }).then(response => {
     if (response.ok) {
       fetchData()
+      guest.upcomingBookings.push(newBooking)
       domUpdates.displaySuccessfulResMsg()
       return response.json()
     } else if (!response.ok) {

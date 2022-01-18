@@ -115,9 +115,9 @@ const domUpdates = {
     let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
 
     let sortedBookings = guest.sortAscendingBookings(upcomingGuestBookings)
-
+    console.log('line 118')
     upcomingRoomsGrid.innerHTML = '';
-
+    console.log('line 120')
     sortedBookings.forEach(booking => {
       let room = roomData.find(room => room.number === booking.roomNumber);
       upcomingRoomsGrid.innerHTML += `
@@ -133,6 +133,7 @@ const domUpdates = {
           </div>
         </article>`
     })
+    console.log('line 136')
   },
   displayApologies() {
     bookingGrid.innerText += ` It appears we have no rooms available that match your criterea. We would love to have you stop by! Try changing your date or room preferances.`
@@ -214,6 +215,7 @@ const domUpdates = {
     bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
     setTimeout(() => {
+      bookingGrid.innerHTML = '';
       domUpdates.displayAccountPage(bookingData, roomData, guest)
     }, 3500)
   },
