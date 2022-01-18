@@ -29,7 +29,7 @@ import {
   roomOptions,
   bookingBtn,
   roomCard,
-  bookingGrid
+  bookingGrid,
 } from './domUpdates.js';
 import User from './classes/User.js';
 import Room from './classes/Room.js';

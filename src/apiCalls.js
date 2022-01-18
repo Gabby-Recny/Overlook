@@ -1,6 +1,9 @@
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
+import domUpdates from './domUpdates.js';
 import {fetchData} from './scripts.js';
+// import {displayReservations,
+//         displayErrorMsg} from './domUpdates.js';
 
 const fetchCustomersAPI = () => {
   return fetch('http://localhost:3001/api/v1/customers')
@@ -41,12 +44,14 @@ const postBookingAPI = (bookedRoom) => {
   }).then(response => {
     if(response.ok) {
       fetchData()
+      domUpdates.displaySuccessfulResMsg()
       return response.json()
     } else if (!response.ok) {
-      throw new Error(`Error: ${response.body}`)
+      // console.log("ERROROROROROR")
+      throw new Error(`Error`)
     }
   })
-    .catch(error => console.log(error))
+    .catch(error => domUpdates.displayErrorMsg(error))
 }
 
 
