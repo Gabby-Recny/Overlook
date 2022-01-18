@@ -195,11 +195,14 @@ const domUpdates = {
     bookingGrid.innerHTML += `<article class='loader'></article>`
     setTimeout(() => {
       postBookingAPI(bookedRoom)
-    }, 2500)
+    }, 2000)
   },
   displaySuccessfulResMsg() {
     bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
+    setTimeout(() => {
+      domUpdates.displayAccountPage()
+    }, 3500)
   },
   displayErrorMsg() {
     bookingGrid.innerHTML = ''
