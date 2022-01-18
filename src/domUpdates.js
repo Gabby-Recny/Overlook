@@ -2,19 +2,16 @@ const homePage = document.getElementById('homePage');
 const accountDashboard = document.getElementById('accountDashboard');
 const logInPage = document.getElementById('logInPage');
 const bookingPage = document.getElementById('bookingPage');
-const roomsPage = document.getElementById('roomsPage');
 const navAccount = document.getElementById('navAccount');
 const navBooking = document.getElementById('navBookNow');
-const navViewRooms = document.getElementById('navViewRooms');
-const navLogOut = document.getElementById('navLogOut');
 const navLogIn = document.getElementById('navLogIn');
 const mainBookingBtn = document.getElementById('mainBookingBtn');
 const msgUserName = document.getElementById('msgUserName');
 const totalSpent = document.getElementById('totalSpent');
 const calendarSubmit = document.getElementById('calendarSubmit');
 const calendarForm = document.getElementById('date');
+let pastRoomsGrid = document.getElementById('pastRoomsGrid');
 let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
-let pastRoomGrid = document.getElementById('pastRoomGrid')
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 const bookingGrid = document.getElementById('bookingGrid');
@@ -31,93 +28,76 @@ const logInError = document.querySelector('.log-in-error');
 
 
 import {
-  guestData,
   bookingData,
   roomData,
-  bookings,
-  room,
   guest,
   hotel,
-  verifiedGuest,
 } from './scripts.js';
-import {postBookingAPI }from './apiCalls.js';
+import {
+  postBookingAPI
+} from './apiCalls.js';
 
 
 
 const domUpdates = {
 
-    hide(elements) {
-      elements.forEach(element => element.classList.add('hidden'));
-    },
+  hide(elements) {
+    elements.forEach(element => element.classList.add('hidden'));
+  },
 
-    reset(elements) {
-      elements.forEach(element => element = '');
+  reset(elements) {
+    elements.forEach(element => element = '');
+  },
+  show(elements) {
+    elements.forEach(element => element.classList.remove('hidden'));
+  },
 
-    },
-
-    show(elements) {
-      elements.forEach(element => element.classList.remove('hidden'));
-    },
-
-    displayHomePage() {
-      domUpdates.show([homePage, mainBookingBtn]);
-      domUpdates.hide([
-        logInPage,
-        bookingPage,
-        roomsPage,
-        accountDashboard,
-      ]);
-    },
-    displayBookingPage() {
-      domUpdates.show([bookingPage]);
-      domUpdates.hide([
-        logInPage,
-        roomsPage,
-        homePage,
-        accountDashboard,
-      ]);
-    },
-    displayRoomsPage() {
-      domUpdates.show([roomsPage]);
-      domUpdates.hide([
-        homePage,
-        logInPage,
-        bookingPage,
-        accountDashboard,
-      ]);
-    },
-    displayLogInPage() {
-      domUpdates.show([logInPage]);
-      domUpdates.hide([
-        homePage,
-        bookingPage,
-        roomsPage,
-        accountDashboard,
-      ]);
-    },
-    displayAccountPage(bookingData, roomData) {
-      domUpdates.show([accountDashboard]);
-      domUpdates.hide([
-        homePage,
-        bookingPage,
-        roomsPage,
-        logInPage
-      ]);
-      domUpdates.displayUserInfo(bookingData, roomData)
-    },
-    displayUserInfo(bookingData, roomData) {
-      guest.getUserBookings(bookingData)
-      guest.calculateTotalSpent(bookingData, roomData);
-      msgUserName.innerText = `${verifiedGuest.name}!`;
-      totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`;
-      domUpdates.displayPastBookings(bookingData, roomData);
-      domUpdates.displayUpcomingBookings(bookingData, roomData);
-    },
-    displayPastBookings(bookingData, roomData) {
-      let guestBookings = guest.getPastBookings(currentDate, bookingData);
-      guestBookings.forEach(booking => {
-        let pastRoom = roomData.find(room => room.number === booking.roomNumber);
-        pastRoomsGrid.innerHTML += `
+  displayHomePage() {
+    domUpdates.show([homePage, mainBookingBtn]);
+    domUpdates.hide([
+      logInPage,
+      bookingPage,
+      accountDashboard,
+    ]);
+  },
+  displayBookingPage() {
+    domUpdates.show([bookingPage]);
+    domUpdates.hide([
+      logInPage,
+      homePage,
+      accountDashboard,
+    ]);
+  },
+  displayLogInPage() {
+    domUpdates.show([logInPage]);
+    domUpdates.hide([
+      homePage,
+      bookingPage,
+      accountDashboard,
+    ]);
+  },
+  displayAccountPage(bookingData, roomData) {
+    domUpdates.show([accountDashboard]);
+    domUpdates.hide([
+      homePage,
+      bookingPage,
+      logInPage
+    ]);
+    domUpdates.displayUserInfo(bookingData, roomData)
+  },
+  displayUserInfo(bookingData, roomData) {
+    guest.getUserBookings(bookingData)
+    guest.calculateTotalSpent(bookingData, roomData);
+    msgUserName.innerText = `${guest.name}!`;
+    totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`;
+    domUpdates.displayPastBookings(bookingData, roomData);
+    domUpdates.displayUpcomingBookings(bookingData, roomData);
+  },
+  displayPastBookings(bookingData, roomData) {
+    let guestBookings = guest.getPastBookings(currentDate, bookingData);
+    guestBookings.forEach(booking => {
+      let pastRoom = roomData.find(room => room.number === booking.roomNumber);
+      pastRoomsGrid.innerHTML += `
         <article class='past-room-card'>
           <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="${pastRoom.roomType}">
           <div class='past-booking-info'>
@@ -127,11 +107,11 @@ const domUpdates = {
           </div>
         </article>
      `
-      })
-    },
-    displayUpcomingBookings(bookingData, roomData) {
-      let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
-      upcomingGuestBookings.forEach(booking => {
+    })
+  },
+  displayUpcomingBookings(bookingData, roomData) {
+    let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
+    upcomingGuestBookings.forEach(booking => {
       let room = roomData.find(room => room.number === booking.roomNumber);
       upcomingRoomsGrid.innerHTML += `
         <article class='room-card'>
@@ -145,7 +125,7 @@ const domUpdates = {
             <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
           </div>
         </article>`
-      })
+    })
   },
   displayApologies() {
     bookingGrid.innerText += ` It appears we have no rooms available that match your criterea. We would love to have you stop by! Try changing your date or room preferances.`
@@ -164,7 +144,7 @@ const domUpdates = {
     }
     hotel.availableRooms.forEach(room => {
       bookingGrid.innerHTML +=
-      `<article class='room-card'>
+        `<article class='room-card'>
           <div class='booking-info'>
             <p id='upcomingRoomType'>${room.roomType}</p>
           </div>
@@ -189,7 +169,7 @@ const domUpdates = {
     }
     hotel.typeOfRooms.forEach(room => {
       bookingGrid.innerHTML +=
-      `<article class='room-card'>
+        `<article class='room-card'>
           <div class='booking-info'>
             <p id='upcomingRoomType'>${room.roomType}</p>
           </div>
@@ -203,7 +183,7 @@ const domUpdates = {
     })
   },
   bookRoom(event, roomData) {
-    if(event.target.className === 'booking-btn') {
+    if (event.target.className === 'booking-btn') {
       let bookedRoom = roomData.find(room => {
         return room.number === parseInt(event.target.id)
       })
@@ -231,7 +211,6 @@ export default domUpdates;
 export {
   navLogIn,
   navBooking,
-  navViewRooms,
   mainBookingBtn,
   navAccount,
   msgUserName,
