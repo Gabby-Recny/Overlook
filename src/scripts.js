@@ -53,6 +53,7 @@ let guests;
 let room;
 let guest;
 let hotel;
+let verifiedGuest;
 
 
 const getRandomIndex = (arr) => {
@@ -77,7 +78,6 @@ const pageLoad = (data) => {
 const instantiateData = (guestData, roomData, bookingData) => {
   instantiateHotel(roomData, bookingData)
   instantiateGuest(guestData)
-  console.log('line 80', guest)
 }
 
 const instantiateGuest = (guestData) => {
@@ -86,6 +86,11 @@ const instantiateGuest = (guestData) => {
     guest = new User (guestObj);
     guests.push(guest);
   });
+}
+
+const instantiateUser = (data) => {
+  verifiedGuest = new User(data)
+  console.log('Instantiate User: line 93', verifiedGuest)
 }
 
 const instantiateHotel = (roomData, bookingData) => {
@@ -100,17 +105,19 @@ const logIn = (event) => {
   if (username.startsWith('customer') && password === 'overlook2021') {
     domUpdates.hide([logInError])
     userNameId = parseInt(username.split('customer')[1])
+    lookUpGuest(userNameId, password)
   } else {
     domUpdates.show([logInError])
   }
-  lookUpGuest(userNameId, password)
 }
 
 const lookUpGuest = (userNameId, password) => {
-  let verifiedGuest = guestData.find(guest => guest.id === userNameId);
-  guest = new Guest (verifiedGuest)
-  console.log('line 113', guest)
-  domUpdates.displayAccountPage(bookingData, roomData)
+  fetchOneCustomerAPI(userNameId)
+  .then(data => {
+    instantiateUser(data)
+    domUpdates.displayAccountPage(bookingData, roomData)
+  })
+  .catch(error => domUpdates.show([logInError]))
 }
 
 
@@ -145,4 +152,4 @@ submitLogIn.addEventListener('click', (event) => {
   logIn(event);
 });
 
-export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel, fetchData}
+export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel, fetchData, instantiateUser, verifiedGuest}

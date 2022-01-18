@@ -38,6 +38,7 @@ import {
   room,
   guest,
   hotel,
+  verifiedGuest,
 } from './scripts.js';
 import {postBookingAPI }from './apiCalls.js';
 
@@ -107,7 +108,7 @@ const domUpdates = {
     displayUserInfo(bookingData, roomData) {
       guest.getUserBookings(bookingData)
       guest.calculateTotalSpent(bookingData, roomData);
-      msgUserName.innerText = `${guest.name}!`;
+      msgUserName.innerText = `${verifiedGuest.name}!`;
       totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`;
       domUpdates.displayPastBookings(bookingData, roomData);
       domUpdates.displayUpcomingBookings(bookingData, roomData);
@@ -220,7 +221,7 @@ const domUpdates = {
     bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
   },
-  displayErrorMsg(error) {
+  displayErrorMsg() {
     bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Ruh roh, something went go. Go back and try again!</h2>`
   }
