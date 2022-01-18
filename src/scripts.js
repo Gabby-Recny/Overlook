@@ -71,7 +71,6 @@ const logIn = (event) => {
 }
 
 const lookUpGuest = (userNameId) => {
-  console.log('line 72', userNameId)
   fetchOneCustomerAPI(userNameId)
   .then(data => {
     instantiateGuest(data)

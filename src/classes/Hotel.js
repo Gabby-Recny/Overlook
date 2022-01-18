@@ -1,3 +1,5 @@
+import selectedDate from '../domUpdates.js';
+
 class Hotel {
   constructor(hotelRooms, hotelBookings) {
     this.rooms = hotelRooms;
@@ -9,9 +11,11 @@ class Hotel {
   getRoomInfo(booking) {
     return this.rooms.find(room => room.number === booking.roomNumber);
   }
-  findUnavailableRooms(date, bookings) {
-    let newDate = date.split('-').join('/')
-    this.unavailableRooms = this.bookings.filter(booking => booking.date === newDate);
+  findUnavailableRooms(selectedDate, bookings) {
+    let newDate = selectedDate.split('-').join('/')
+    return this.unavailableRooms = this.bookings.filter(booking => {
+      return booking.date === newDate
+    });
   }
   findAvailableRooms(date, bookings) {
     this.findUnavailableRooms(date, bookings);

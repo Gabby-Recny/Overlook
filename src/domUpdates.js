@@ -38,7 +38,7 @@ import {
 } from './apiCalls.js';
 
 
-
+let selectedDate;
 const domUpdates = {
 
   hide(elements) {
@@ -113,8 +113,11 @@ const domUpdates = {
   },
   displayUpcomingBookings(bookingData, roomData) {
     let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
+
     let sortedBookings = guest.sortAscendingBookings(upcomingGuestBookings)
+
     upcomingRoomsGrid.innerHTML = '';
+
     sortedBookings.forEach(booking => {
       let room = roomData.find(room => room.number === booking.roomNumber);
       upcomingRoomsGrid.innerHTML += `
@@ -136,8 +139,8 @@ const domUpdates = {
   },
   accessDate(event) {
     event.preventDefault();
-    let date = calendarForm.value.split(' ').join('/')
-    domUpdates.displayRoomsByDate(date)
+    selectedDate = calendarForm.value.split('-').join('/')
+    domUpdates.displayRoomsByDate(selectedDate)
   },
   displayRoomsByDate(selectedDate) {
     hotel.findAvailableRooms(selectedDate, bookingData)
@@ -195,17 +198,22 @@ const domUpdates = {
     }
   },
   createReservation(bookedRoom) {
+  let bookingDate = selectedDate.split('-').join('/');
+    const newBooking = {
+      userID: guest.id,
+      date: bookingDate,
+      roomNumber: bookedRoom.number
+    };
     bookingGrid.innerHTML = '';
     bookingGrid.innerHTML += `<article class='loader'></article>`
     setTimeout(() => {
-      postBookingAPI(bookedRoom)
+      postBookingAPI(newBooking)
     }, 2000)
   },
   displaySuccessfulResMsg() {
     bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
     setTimeout(() => {
-      domUpdates.displayUpcomingBookings(bookingData, roomData)
       domUpdates.displayAccountPage(bookingData, roomData, guest)
     }, 3500)
   },
@@ -238,5 +246,6 @@ export {
   usernameInput,
   logInForm,
   submitLogIn,
-  logInError
+  logInError,
+  selectedDate
 };
