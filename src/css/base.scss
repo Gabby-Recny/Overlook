@@ -7,6 +7,7 @@
 @import '_login';
 @import '_bookingPage';
 @import '_loader';
+@import '_mixins';
 
 
 html {
@@ -20,6 +21,15 @@ body {
   width: 100%;
   background-color: #8D1C79;
   color: #000000;
+}
+
+.booking-btn:hover {
+  cursor: pointer;
+  @include highlight;
+}
+
+.booking-btn:focus {
+  @include highlight;
 }
 
 
