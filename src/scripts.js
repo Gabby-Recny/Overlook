@@ -30,6 +30,11 @@ import {
   bookingBtn,
   roomCard,
   bookingGrid,
+  passwordInput,
+  usernameInput,
+  logInForm,
+  submitLogIn,
+  logInError
 } from './domUpdates.js';
 import User from './classes/User.js';
 import Room from './classes/Room.js';
@@ -48,6 +53,7 @@ let guests;
 let room;
 let guest;
 let hotel;
+let verifiedGuest;
 
 
 const getRandomIndex = (arr) => {
@@ -60,7 +66,6 @@ const fetchData = () => {
     fetchBookingAPI(),
     fetchRoomsAPI(),
   ]).then(data => pageLoad(data))
-    // .catch(error => console.log(error))
 }
 
 const pageLoad = (data) => {
@@ -75,25 +80,6 @@ const instantiateData = (guestData, roomData, bookingData) => {
   instantiateGuest(guestData)
 }
 
-
-// const instanstiateBooking = (bookingData) => {
-//   bookings = [];
-//   bookingData.forEach(bookingObj => {
-//     booking = new Booking(bookingObj);
-//     bookings.push(booking);
-//   });
-//   return bookings;
-// }
-//
-// const instantiateRoom = (roomData) => {
-//   const rooms = [];
-//   roomData.forEach(roomObj => {
-//     room = new Room(roomObj);
-//     rooms.push(room);
-//   });
-//   return rooms;
-// }
-
 const instantiateGuest = (guestData) => {
   guests = [];
   guestData.forEach(guestObj => {
@@ -102,9 +88,42 @@ const instantiateGuest = (guestData) => {
   });
 }
 
+const instantiateUser = (data) => {
+  verifiedGuest = new User(data)
+  console.log('Instantiate User: line 93', verifiedGuest)
+}
+
 const instantiateHotel = (roomData, bookingData) => {
   hotel = new Hotel(roomData, bookingData)
 }
+
+const logIn = (event) => {
+  event.preventDefault();
+  let username = usernameInput.value;
+  let password = passwordInput.value;
+  let userNameId;
+  if (username.startsWith('customer') && password === 'overlook2021') {
+    domUpdates.hide([logInError])
+    userNameId = parseInt(username.split('customer')[1])
+    lookUpGuest(userNameId, password)
+  } else {
+    domUpdates.show([logInError])
+  }
+}
+
+const lookUpGuest = (userNameId, password) => {
+  fetchOneCustomerAPI(userNameId)
+  .then(data => {
+    instantiateUser(data)
+    domUpdates.displayAccountPage(bookingData, roomData)
+  })
+  .catch(error => domUpdates.show([logInError]))
+}
+
+
+
+
+
 
 
 window.addEventListener('load', fetchData);
@@ -129,5 +148,8 @@ filterRoomsBtn.addEventListener('click', (event) => {
 bookingGrid.addEventListener('click', (event) => {
   domUpdates.bookRoom(event, roomData);
 });
+submitLogIn.addEventListener('click', (event) => {
+  logIn(event);
+});
 
-export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel, fetchData}
+export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel, fetchData, instantiateUser, verifiedGuest}

@@ -29,6 +29,7 @@ class User {
       })
       return acc;
     }, 0);
+    this.totalSpent = Math.round(totalAmt * 100) / 100;
     return Math.round(totalAmt * 100) / 100;
   }
 

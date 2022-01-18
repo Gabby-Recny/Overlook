@@ -2,42 +2,42 @@ const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 import domUpdates from './domUpdates.js';
 import {fetchData} from './scripts.js';
-// import {displayReservations,
-//         displayErrorMsg} from './domUpdates.js';
+import {verifiedGuest} from './scripts.js';
+import {instantiateUser} from './scripts.js';
 
 const fetchCustomersAPI = () => {
   return fetch('http://localhost:3001/api/v1/customers')
   .then(response => response.json())
-  .catch(error => console.log("Customer Error", error))
+  .catch(error => domUpdates.displayErrorMsg())
 }
 
 const fetchOneCustomerAPI = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
   .then(response => response.json())
-  .catch(error => console.log(error))
+  // .then(data => instantiateUser(data))
+  // .catch(error => domUpdates.displayErrorMsg())
 }
 
 const fetchBookingAPI = () => {
   return fetch('http://localhost:3001/api/v1/bookings')
     .then(response => response.json())
-    .catch(error => console.log("Booking Error", error))
+    .catch(error => domUpdates.displayErrorMsg())
 }
 
 const fetchRoomsAPI = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
     .then(response => response.json())
-    .catch(error => console.log("Rooms Error", error))
+    .catch(error => domUpdates.displayErrorMsg())
 }
 
 const postBookingAPI = (bookedRoom) => {
-  console.log("MAKE USER ID DYNAMIC APICALLS:LINE 36")
   fetch('http://localhost:3001/api/v1/bookings', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      userID: 50,
+      userID: guest.id,
       date: currentDate,
       roomNumber: bookedRoom.number
     })
@@ -47,11 +47,10 @@ const postBookingAPI = (bookedRoom) => {
       domUpdates.displaySuccessfulResMsg()
       return response.json()
     } else if (!response.ok) {
-      // console.log("ERROROROROROR")
       throw new Error(`Error`)
     }
   })
-    .catch(error => domUpdates.displayErrorMsg(error))
+    .catch(error => domUpdates.displayErrorMsg())
 }
 
 

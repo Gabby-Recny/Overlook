@@ -23,6 +23,11 @@ const filterRoomsBtn = document.getElementById('filterRoomsBtn');
 const roomOptions = document.getElementById('roomOptions');
 const bookingBtn = document.querySelector('.booking-btn');
 const roomCard = document.querySelector('.room-card');
+const logInForm = document.getElementById('logInForm');
+const usernameInput = document.getElementById('usernameInput');
+const passwordInput = document.getElementById('passwordInput');
+const submitLogIn = document.getElementById('submitLogIn');
+const logInError = document.querySelector('.log-in-error');
 
 
 import {
@@ -30,12 +35,10 @@ import {
   bookingData,
   roomData,
   bookings,
-  // rooms,
-  // booking,
-  // guests,
   room,
   guest,
   hotel,
+  verifiedGuest,
 } from './scripts.js';
 import {postBookingAPI }from './apiCalls.js';
 
@@ -45,6 +48,11 @@ const domUpdates = {
 
     hide(elements) {
       elements.forEach(element => element.classList.add('hidden'));
+    },
+
+    reset(elements) {
+      elements.forEach(element => element = '');
+
     },
 
     show(elements) {
@@ -87,7 +95,7 @@ const domUpdates = {
         accountDashboard,
       ]);
     },
-    displayAccountPage() {
+    displayAccountPage(bookingData, roomData) {
       domUpdates.show([accountDashboard]);
       domUpdates.hide([
         homePage,
@@ -98,9 +106,9 @@ const domUpdates = {
       domUpdates.displayUserInfo(bookingData, roomData)
     },
     displayUserInfo(bookingData, roomData) {
-      guest.getUserBookings(bookingData);
+      guest.getUserBookings(bookingData)
       guest.calculateTotalSpent(bookingData, roomData);
-      msgUserName.innerText = `${guest.name}!`;
+      msgUserName.innerText = `${verifiedGuest.name}!`;
       totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`;
       domUpdates.displayPastBookings(bookingData, roomData);
       domUpdates.displayUpcomingBookings(bookingData, roomData);
@@ -213,7 +221,7 @@ const domUpdates = {
     bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
   },
-  displayErrorMsg(error) {
+  displayErrorMsg() {
     bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Ruh roh, something went go. Go back and try again!</h2>`
   }
@@ -236,4 +244,9 @@ export {
   roomOptions,
   bookingBtn,
   roomCard,
+  passwordInput,
+  usernameInput,
+  logInForm,
+  submitLogIn,
+  logInError
 };

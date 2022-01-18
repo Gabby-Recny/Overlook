@@ -37,40 +37,22 @@
     <section class='upcoming-bookings' id='upcomingBookings'>
       <h2>Upcoming Trips</h2>
       <section class='upcoming-rooms-grid' id='upcomingRoomsGrid'>
-        <!-- <article class='room-card'>
-            <div class='booking-info'>
-              <p id='upcomingDate'>Jan 11, 2011</p>
-              <p id='upcomingRoomType'>Single Room</p>
-            </div>
-            <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
-            <div class='cost-and-bed-type'>
-              <h3 id='upcomingCost'>$3954</h3>
-              <h3 class='room-bed-type' id='upcomingBedType'>King</h3>
-            </div>
-        </article> -->
       </section>
     </section>
     <section class='past-bookings' id='pastBookings'>
       <h2>Past Stays</h2>
       <section class='past-rooms-grid' id='pastRoomsGrid'>
-        <!-- <article class='past-room-card'>
-          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
-          <div class='past-booking-info'>
-            <p id='pastDate'>Jan 11, 2011</p>
-            <p id='pastRoomType'>Single Room</p>
-            <p id'pastCost'>cost</p>
-          </div>
-        </article> -->
       </section>
     </section>
   </section>
   <section class='log-in-page hidden' id='logInPage'>
-    <form class='log-in-form'>
+    <form class='log-in-form' id='logInForm'>
       <label>Username : </label>
-      <input type="text" placeholder="Enter Username" name="username" required>
+      <input id='usernameInput' type="text" placeholder="Enter Username" name="username" required>
       <label>Password : </label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-      <button class='submit-btn' type="submit">Login</button>
+      <input id='passwordInput' type="password" placeholder="Enter Password" name="password" required>
+      <p class='log-in-error hidden' id='logInError'>Incorrect username or password. Please try again.</p>
+      <button class='log-in-submit-btn' id='submitLogIn' type="submit">Login</button>
       <button type="button" class="cancelbtn"> Cancel</button>
     </form>
   </section>
@@ -100,19 +82,7 @@
         </form>
         </article>
         <section class='booking-grid' id='bookingGrid'>
-          <!-- <article class='room-card'>
-              <div class='booking-info'>
-                <p id='upcomingDate'>Jan 11, 2011</p>
-                <p id='upcomingRoomType'>Single Room</p>
-              </div>
-              <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
-              <div class='cost-and-bed-type'>
-                <h3 id='upcomingCost'>$3954</h3>
-                <h3 class='room-bed-type' id='upcomingBedType'>King</h3>
-              </div>
-          </article> -->
         </section>
-
       </section>
     <section class='rooms-page hidden' id='roomsPage'>
       <h1>ROOMS PAGE</h1>
