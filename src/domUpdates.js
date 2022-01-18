@@ -207,6 +207,9 @@ const domUpdates = {
   displayErrorMsg() {
     bookingGrid.innerHTML = ''
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Ruh roh, something went go. Go back and try again!</h2>`
+    setTimeout(() => {
+      domUpdates.displayBookingPage()
+    }, 3500)
   }
 }
 
