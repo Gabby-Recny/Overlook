@@ -77,6 +77,7 @@ const pageLoad = (data) => {
 const instantiateData = (guestData, roomData, bookingData) => {
   instantiateHotel(roomData, bookingData)
   instantiateGuest(guestData)
+  console.log('line 80', guest)
 }
 
 const instantiateGuest = (guestData) => {
@@ -106,10 +107,10 @@ const logIn = (event) => {
 }
 
 const lookUpGuest = (userNameId, password) => {
-  guest = guestData.find(guest => {
-    return guest.id === userNameId;
-  })
-  domUpdates.displayAccountPage()
+  let verifiedGuest = guestData.find(guest => guest.id === userNameId);
+  guest = new Guest (verifiedGuest)
+  console.log('line 113', guest)
+  domUpdates.displayAccountPage(bookingData, roomData)
 }
 
 

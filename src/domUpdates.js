@@ -49,6 +49,11 @@ const domUpdates = {
       elements.forEach(element => element.classList.add('hidden'));
     },
 
+    reset(elements) {
+      elements.forEach(element => element = '');
+
+    },
+
     show(elements) {
       elements.forEach(element => element.classList.remove('hidden'));
     },
@@ -89,7 +94,7 @@ const domUpdates = {
         accountDashboard,
       ]);
     },
-    displayAccountPage() {
+    displayAccountPage(bookingData, roomData) {
       domUpdates.show([accountDashboard]);
       domUpdates.hide([
         homePage,
@@ -97,10 +102,10 @@ const domUpdates = {
         roomsPage,
         logInPage
       ]);
-      domUpdates.displayUserInfo(guest, bookingData, roomData)
+      domUpdates.displayUserInfo(bookingData, roomData)
     },
-    displayUserInfo(guest, bookingData, roomData) {
-      guest.getUserBookings(bookingData);
+    displayUserInfo(bookingData, roomData) {
+      guest.getUserBookings(bookingData)
       guest.calculateTotalSpent(bookingData, roomData);
       msgUserName.innerText = `${guest.name}!`;
       totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`;
