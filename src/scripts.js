@@ -17,7 +17,6 @@ import {
   bookingPage,
   navAccount,
   navBooking,
-  navViewRooms,
   navLogIn,
   navLogOut,
   mainBookingBtn,
@@ -104,9 +103,6 @@ const lookUpGuest = (userNameId, password) => {
 window.addEventListener('load', fetchData);
 navLogIn.addEventListener('click', () => {
   domUpdates.displayLogInPage()
-});
-navViewRooms.addEventListener('click', () => {
-  domUpdates.displayRoomsPage()
 });
 navBooking.addEventListener('click', () => {
   domUpdates.displayBookingPage()

@@ -2,10 +2,8 @@ const homePage = document.getElementById('homePage');
 const accountDashboard = document.getElementById('accountDashboard');
 const logInPage = document.getElementById('logInPage');
 const bookingPage = document.getElementById('bookingPage');
-const roomsPage = document.getElementById('roomsPage');
 const navAccount = document.getElementById('navAccount');
 const navBooking = document.getElementById('navBookNow');
-const navViewRooms = document.getElementById('navViewRooms');
 const navLogOut = document.getElementById('navLogOut');
 const navLogIn = document.getElementById('navLogIn');
 const mainBookingBtn = document.getElementById('mainBookingBtn');
@@ -63,7 +61,6 @@ const domUpdates = {
       domUpdates.hide([
         logInPage,
         bookingPage,
-        roomsPage,
         accountDashboard,
       ]);
     },
@@ -71,17 +68,7 @@ const domUpdates = {
       domUpdates.show([bookingPage]);
       domUpdates.hide([
         logInPage,
-        roomsPage,
         homePage,
-        accountDashboard,
-      ]);
-    },
-    displayRoomsPage() {
-      domUpdates.show([roomsPage]);
-      domUpdates.hide([
-        homePage,
-        logInPage,
-        bookingPage,
         accountDashboard,
       ]);
     },
@@ -90,7 +77,6 @@ const domUpdates = {
       domUpdates.hide([
         homePage,
         bookingPage,
-        roomsPage,
         accountDashboard,
       ]);
     },
@@ -99,7 +85,6 @@ const domUpdates = {
       domUpdates.hide([
         homePage,
         bookingPage,
-        roomsPage,
         logInPage
       ]);
       domUpdates.displayUserInfo(bookingData, roomData)
@@ -230,7 +215,6 @@ export default domUpdates;
 export {
   navLogIn,
   navBooking,
-  navViewRooms,
   mainBookingBtn,
   navAccount,
   msgUserName,
