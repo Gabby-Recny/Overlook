@@ -3,7 +3,6 @@ let currentDate = dayjs().format("YYYY/MM/DD");
 import domUpdates from './domUpdates.js';
 import {fetchData} from './scripts.js';
 import {guest} from './scripts.js';
-import {instantiateUser} from './scripts.js';
 
 const fetchCustomersAPI = () => {
   return fetch('http://localhost:3001/api/v1/customers')
@@ -14,8 +13,6 @@ const fetchCustomersAPI = () => {
 const fetchOneCustomerAPI = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
   .then(response => response.json())
-  // .then(data => instantiateUser(data))
-  // .catch(error => domUpdates.displayErrorMsg())
 }
 
 const fetchBookingAPI = () => {

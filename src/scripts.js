@@ -50,7 +50,7 @@ const pageLoad = (data) => {
   hotel = new Hotel(roomData, bookingData)
 }
 
-const instantiateUser = (data) => {
+const instantiateGuest = (data) => {
   guest = new User(data)
   console.log('Instantiate User: line 93', guest)
 }
@@ -72,7 +72,7 @@ const logIn = (event) => {
 const lookUpGuest = (userNameId) => {
   fetchOneCustomerAPI(userNameId)
   .then(data => {
-    instantiateUser(data)
+    instantiateGuest(data)
     domUpdates.displayAccountPage(bookingData, roomData)
   })
   .catch(error => domUpdates.show([logInError]))
@@ -101,4 +101,4 @@ submitLogIn.addEventListener('click', (event) => {
   logIn(event);
 });
 
-export {guestData, bookingData, roomData, booking, guests, room, guest, hotel, fetchData, instantiateUser}
+export {guestData, bookingData, roomData, booking, guests, room, guest, hotel, fetchData, instantiateGuest}
