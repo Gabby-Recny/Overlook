@@ -203,7 +203,6 @@ const domUpdates = {
     }
   },
   createReservation(bookedRoom) {
-    console.log('ine 206', bookedRoom)
     postBookingAPI(bookedRoom)
   },
   displayReservations() {

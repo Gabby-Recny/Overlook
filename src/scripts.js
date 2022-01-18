@@ -59,7 +59,6 @@ const fetchData = () => {
     fetchCustomersAPI(),
     fetchBookingAPI(),
     fetchRoomsAPI(),
-    postBookingAPI(booking),
   ]).then(data => pageLoad(data))
     // .catch(error => console.log(error))
 }
@@ -72,7 +71,7 @@ const pageLoad = (data) => {
 }
 
 const instantiateData = (guestData, roomData, bookingData) => {
-  instantiateHotel (roomData, bookingData)
+  instantiateHotel(roomData, bookingData)
   instantiateGuest(guestData)
 }
 
@@ -107,7 +106,6 @@ const instantiateHotel = (roomData, bookingData) => {
   hotel = new Hotel(roomData, bookingData)
 }
 
-export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel, fetchData}
 
 window.addEventListener('load', fetchData);
 navLogIn.addEventListener('click', () => {
@@ -131,3 +129,5 @@ filterRoomsBtn.addEventListener('click', (event) => {
 bookingGrid.addEventListener('click', (event) => {
   domUpdates.bookRoom(event, roomData);
 });
+
+export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel, fetchData}

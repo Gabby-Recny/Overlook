@@ -1,6 +1,6 @@
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
-import fetchData from './scripts.js';
+import {fetchData} from './scripts.js';
 
 const fetchCustomersAPI = () => {
   return fetch('http://localhost:3001/api/v1/customers')
@@ -27,25 +27,25 @@ const fetchRoomsAPI = () => {
 }
 
 const postBookingAPI = (bookedRoom) => {
+  console.log("MAKE USER ID DYNAMIC APICALLS:LINE 36")
   fetch('http://localhost:3001/api/v1/bookings', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      userID: 1,
+      userID: 50,
       date: currentDate,
       roomNumber: bookedRoom.number
     })
   }).then(response => {
     if(response.ok) {
-      console.log('API calls line 38 cool')
       fetchData()
+      return response.json()
     } else if (!response.ok) {
-      console.log('API calls line 40 not okay')
-      console.log(response)
+      throw new Error(`Error: ${response.body}`)
     }
-  }).then(response => response.json())
+  })
     .catch(error => console.log(error))
 }
 
