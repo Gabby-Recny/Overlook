@@ -35,9 +35,6 @@ import {
   bookingData,
   roomData,
   bookings,
-  // rooms,
-  // booking,
-  // guests,
   room,
   guest,
   hotel,
@@ -100,9 +97,9 @@ const domUpdates = {
         roomsPage,
         logInPage
       ]);
-      domUpdates.displayUserInfo(bookingData, roomData)
+      domUpdates.displayUserInfo(guest, bookingData, roomData)
     },
-    displayUserInfo(bookingData, roomData) {
+    displayUserInfo(guest, bookingData, roomData) {
       guest.getUserBookings(bookingData);
       guest.calculateTotalSpent(bookingData, roomData);
       msgUserName.innerText = `${guest.name}!`;

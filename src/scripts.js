@@ -65,7 +65,6 @@ const fetchData = () => {
     fetchBookingAPI(),
     fetchRoomsAPI(),
   ]).then(data => pageLoad(data))
-    // .catch(error => console.log(error))
 }
 
 const pageLoad = (data) => {
@@ -96,17 +95,22 @@ const logIn = (event) => {
   event.preventDefault();
   let username = usernameInput.value;
   let password = passwordInput.value;
+  let userNameId;
   if (username.startsWith('customer') && password === 'overlook2021') {
     domUpdates.hide([logInError])
-    domUpdates.displayAccountPage()
+    userNameId = parseInt(username.split('customer')[1])
   } else {
     domUpdates.show([logInError])
   }
+  lookUpGuest(userNameId, password)
 }
 
-
-
-
+const lookUpGuest = (userNameId, password) => {
+  guest = guestData.find(guest => {
+    return guest.id === userNameId;
+  })
+  domUpdates.displayAccountPage()
+}
 
 
 
