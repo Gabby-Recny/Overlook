@@ -38,7 +38,6 @@ import {
   room,
   guest,
   hotel,
-  verifiedGuest,
 } from './scripts.js';
 import {postBookingAPI }from './apiCalls.js';
 
@@ -108,7 +107,7 @@ const domUpdates = {
     displayUserInfo(bookingData, roomData) {
       guest.getUserBookings(bookingData)
       guest.calculateTotalSpent(bookingData, roomData);
-      msgUserName.innerText = `${verifiedGuest.name}!`;
+      msgUserName.innerText = `${guest.name}!`;
       totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`;
       domUpdates.displayPastBookings(bookingData, roomData);
       domUpdates.displayUpcomingBookings(bookingData, roomData);

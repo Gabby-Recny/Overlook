@@ -15,7 +15,6 @@ import domUpdates from './domUpdates.js';
 import {
   logInPage,
   bookingPage,
-  roomsPage,
   navAccount,
   navBooking,
   navViewRooms,
@@ -46,14 +45,11 @@ import Hotel from './classes/Hotel.js';
 let guestData;
 let bookingData;
 let roomData;
-let bookings;
-let rooms;
 let booking;
 let guests;
 let room;
 let guest;
 let hotel;
-let verifiedGuest;
 
 
 const getRandomIndex = (arr) => {
@@ -72,29 +68,12 @@ const pageLoad = (data) => {
   guestData = data[0].customers;
   bookingData = data[1].bookings;
   roomData = data[2].rooms;
-  instantiateData(guestData, roomData, bookingData)
-}
-
-const instantiateData = (guestData, roomData, bookingData) => {
-  instantiateHotel(roomData, bookingData)
-  instantiateGuest(guestData)
-}
-
-const instantiateGuest = (guestData) => {
-  guests = [];
-  guestData.forEach(guestObj => {
-    guest = new User (guestObj);
-    guests.push(guest);
-  });
+  hotel = new Hotel(roomData, bookingData)
 }
 
 const instantiateUser = (data) => {
-  verifiedGuest = new User(data)
-  console.log('Instantiate User: line 93', verifiedGuest)
-}
-
-const instantiateHotel = (roomData, bookingData) => {
-  hotel = new Hotel(roomData, bookingData)
+  guest = new User(data)
+  console.log('Instantiate User: line 93', guest)
 }
 
 const logIn = (event) => {
@@ -119,10 +98,6 @@ const lookUpGuest = (userNameId, password) => {
   })
   .catch(error => domUpdates.show([logInError]))
 }
-
-
-
-
 
 
 
@@ -152,4 +127,4 @@ submitLogIn.addEventListener('click', (event) => {
   logIn(event);
 });
 
-export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel, fetchData, instantiateUser, verifiedGuest}
+export {guestData, bookingData, roomData, booking, guests, room, guest, hotel, fetchData, instantiateUser}

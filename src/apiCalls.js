@@ -2,7 +2,7 @@ const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 import domUpdates from './domUpdates.js';
 import {fetchData} from './scripts.js';
-import {verifiedGuest} from './scripts.js';
+import {guest} from './scripts.js';
 import {instantiateUser} from './scripts.js';
 
 const fetchCustomersAPI = () => {
