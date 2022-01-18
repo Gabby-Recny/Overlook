@@ -95,8 +95,12 @@ const domUpdates = {
     let guestBookings = guest.getPastBookings(currentDate, bookingData);
     let sortedBookings = guest.sortDescendingBookings(guestBookings)
 
-    pastRoomsGrid.innerHTML = '';
+    if (sortedBookings.length === 0) {
+      pastRoomsGrid.innerHTML = '';
+      pastRoomsGrid.innerHTML += `It looks like you haven't booked a stay with yet! Click the "Book Now" button to get started!`
+    }
 
+    pastRoomsGrid.innerHTML = '';
     sortedBookings.forEach(booking => {
       let pastRoom = roomData.find(room => room.number === booking.roomNumber);
       pastRoomsGrid.innerHTML += `
@@ -115,9 +119,13 @@ const domUpdates = {
     let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
 
     let sortedBookings = guest.sortAscendingBookings(upcomingGuestBookings)
-    console.log('line 118')
+
+    if (sortedBookings.length === 0) {
+      upcomingRoomsGrid.innerHTML = '';
+      upcomingRoomsGrid.innerHTML += `It looks like you haven't booked a stay with yet! Click the "Book Now" button to get started!`
+    }
+
     upcomingRoomsGrid.innerHTML = '';
-    console.log('line 120')
     sortedBookings.forEach(booking => {
       let room = roomData.find(room => room.number === booking.roomNumber);
       upcomingRoomsGrid.innerHTML += `
@@ -133,7 +141,6 @@ const domUpdates = {
           </div>
         </article>`
     })
-    console.log('line 136')
   },
   displayApologies() {
     bookingGrid.innerText += ` It appears we have no rooms available that match your criterea. We would love to have you stop by! Try changing your date or room preferances.`
