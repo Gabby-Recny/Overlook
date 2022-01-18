@@ -37,6 +37,19 @@
        align-self: center;
          }
  .submit-btn:hover {
-        opacity: 0.7;
+   filter: brightness(115%);
+   box-shadow: 0px 5px 10px #00000033;
     }
+  .submit-btn:focus {
+    filter: brightness(115%);
+    box-shadow: 0px 5px 10px #00000033;
+  }
+  .cancelbtn:hover {
+    filter: brightness(115%);
+    box-shadow: 0px 5px 10px #00000033;
+     }
+   .cancelbtn:focus {
+     filter: brightness(115%);
+     box-shadow: 0px 5px 10px #00000033;
+   }
 }
