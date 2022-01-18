@@ -9,6 +9,7 @@
 </head>
 <!DOCTYPE html>
 <html lang="en">
+
 <body>
   <nav class="nav-bar">
     <h1 class='title'>Overlook</h1>
@@ -74,34 +75,48 @@
     </form>
   </section>
   <section class='booking-page hidden' id='bookingPage'>
-    <h1>BOOKING PAGEEEEEE</h1>
-    <section class='calendar'>
-      <form>
-        <div class="nativeDatePicker">
-          <label for="date">Pick a date</label>
-          <input type="date" id="date" name="date">
-          <input type='submit' id='calendarSubmit'>
-          <span class="validity"></span>
+    <h1 class='booking-title'>BOOKING PAGEEEEEE</h1>
+      <article class='reservation-info'>
+        <div class='calendar-section'>
+          <form class='calendar'>
+            <div class="nativeDatePicker">
+              <label for="date">Pick a date</label>
+              <input type="date" id="date" name="date">
+              <input type='submit' id='calendarSubmit'>
+              <span class="validity"></span>
+            </div>
+          </form>
         </div>
-      </form>
+        </article>
+        <form class="filtered-rooms" id="filteredRooms">
+            <label class='search-by' for='search-options'>Room Type</label>
+            <select class='room-options' name='search' id='roomOptions'>
+              <option value='empty'></option>
+              <option value='residential suite'>Residential Suite</option>
+              <option value='junior suite'>Junior Suite</option>
+              <option value='suite'>Suite</option>
+              <option value='single room'>Single Room</option>
+            </select>
+            <button class="filter-rooms-btn" id="filterRoomsBtn">Check Availability</button>
+        </form>
+        <section class='booking-grid' id='bookingGrid'>
+          <!-- <article class='room-card'>
+              <div class='booking-info'>
+                <p id='upcomingDate'>Jan 11, 2011</p>
+                <p id='upcomingRoomType'>Single Room</p>
+              </div>
+              <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Random Photo">
+              <div class='cost-and-bed-type'>
+                <h3 id='upcomingCost'>$3954</h3>
+                <h3 class='room-bed-type' id='upcomingBedType'>King</h3>
+              </div>
+          </article> -->
+        </section>
+      </section>
+    <section class='rooms-page hidden' id='roomsPage'>
+      <h1>ROOMS PAGE</h1>
     </section>
-    <section class='drop-down'>
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        My account
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">My cart</a></li>
-        <li><a class="dropdown-item" href="#">My orders</a></li>
-        <li><a class="dropdown-item" href="#">My details</a></li>
-        <li role="separator" class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Log out</a></li>
-      </ul>
-  </section>
-  <section class='rooms-page hidden' id='roomsPage'>
-    <h1>ROOMS PAGE</h1>
-  </section>
-  <script src="bundle.js"></script>
+    <script src="bundle.js"></script>
 </body>
 
 </html>
