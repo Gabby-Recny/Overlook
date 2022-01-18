@@ -204,11 +204,19 @@ const domUpdates = {
   },
   createReservation(bookedRoom) {
     postBookingAPI(bookedRoom)
+    domUpdates.displayReservations()
   },
   displayReservations() {
+    console.log('Inside reservations')
     bookingGrid.innerHTML = '';
-    bookingGrid.innerText += `Thank you for booking with us.`
+    bookingGrid.innerHTML += `<article class='loader'></article>`
+    console.log('line 213')
+    setTimeout(domUpdates.displaySuccessfulResMsg, 3000)
     console.log('Thank you for booking with us.')
+  },
+  displaySuccessfulResMsg() {
+    bookingGrid.innerHTML = '';
+    bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
   }
 }
 
