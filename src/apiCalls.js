@@ -40,6 +40,7 @@ const postBookingAPI = (bookedRoom) => {
     })
   }).then(response => {
     if (response.ok) {
+      console.log(response)
       fetchData()
       domUpdates.displaySuccessfulResMsg()
       return response.json()

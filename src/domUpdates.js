@@ -77,7 +77,7 @@ const domUpdates = {
     ]);
   },
   displayAccountPage(bookingData, roomData, guest) {
-    console.log('line 80', guest)
+    console.log('domupdates line 80', guest)
     domUpdates.show([accountDashboard]);
     domUpdates.hide([
       homePage,
@@ -119,7 +119,7 @@ const domUpdates = {
     let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
     let sortedBookings = guest.sortAscendingBookings(upcomingGuestBookings)
     upcomingRoomsGrid.innerHTML = '';
-    upcomingGuestBookings.forEach(booking => {
+    sortedBookings.forEach(booking => {
       let room = roomData.find(room => room.number === booking.roomNumber);
       upcomingRoomsGrid.innerHTML += `
         <article class='room-card'>
