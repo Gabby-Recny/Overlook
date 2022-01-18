@@ -95,7 +95,9 @@ const domUpdates = {
   },
   displayPastBookings(bookingData, roomData) {
     let guestBookings = guest.getPastBookings(currentDate, bookingData);
-    guestBookings.forEach(booking => {
+    let sortedBookings = guest.sortDescendingBookings(guestBookings)
+
+    sortedBookings.forEach(booking => {
       let pastRoom = roomData.find(room => room.number === booking.roomNumber);
       pastRoomsGrid.innerHTML += `
         <article class='past-room-card'>
@@ -107,10 +109,11 @@ const domUpdates = {
           </div>
         </article>
      `
-    })
+   })
   },
   displayUpcomingBookings(bookingData, roomData) {
     let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
+    let sortedBookings = guest.sortAscendingBookings(upcomingGuestBookings)
     upcomingGuestBookings.forEach(booking => {
       let room = roomData.find(room => room.number === booking.roomNumber);
       upcomingRoomsGrid.innerHTML += `

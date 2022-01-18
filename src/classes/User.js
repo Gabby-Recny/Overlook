@@ -52,6 +52,19 @@ class User {
     })
     return this.upcomingBookings;
   }
+
+  sortDescendingBookings(bookings) {
+    return bookings.sort((a, b) => {
+      return dayjs(b.date) - dayjs(a.date)
+    })
+  }
+
+  sortAscendingBookings(bookings) {
+    return bookings.sort((a, b) => {
+      return dayjs(a.date) - dayjs(b.date)
+    })
+  }
 }
+
 
 export default User;
