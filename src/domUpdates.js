@@ -23,6 +23,11 @@ const filterRoomsBtn = document.getElementById('filterRoomsBtn');
 const roomOptions = document.getElementById('roomOptions');
 const bookingBtn = document.querySelector('.booking-btn');
 const roomCard = document.querySelector('.room-card');
+const logInForm = document.getElementById('logInForm');
+const usernameInput = document.getElementById('usernameInput');
+const passwordInput = document.getElementById('passwordInput');
+const submitLogIn = document.getElementById('submitLogIn');
+const logInError = document.querySelector('.log-in-error');
 
 
 import {
@@ -236,4 +241,9 @@ export {
   roomOptions,
   bookingBtn,
   roomCard,
+  passwordInput,
+  usernameInput,
+  logInForm,
+  submitLogIn,
+  logInError
 };

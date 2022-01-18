@@ -30,6 +30,11 @@ import {
   bookingBtn,
   roomCard,
   bookingGrid,
+  passwordInput,
+  usernameInput,
+  logInForm,
+  submitLogIn,
+  logInError
 } from './domUpdates.js';
 import User from './classes/User.js';
 import Room from './classes/Room.js';
@@ -75,25 +80,6 @@ const instantiateData = (guestData, roomData, bookingData) => {
   instantiateGuest(guestData)
 }
 
-
-// const instanstiateBooking = (bookingData) => {
-//   bookings = [];
-//   bookingData.forEach(bookingObj => {
-//     booking = new Booking(bookingObj);
-//     bookings.push(booking);
-//   });
-//   return bookings;
-// }
-//
-// const instantiateRoom = (roomData) => {
-//   const rooms = [];
-//   roomData.forEach(roomObj => {
-//     room = new Room(roomObj);
-//     rooms.push(room);
-//   });
-//   return rooms;
-// }
-
 const instantiateGuest = (guestData) => {
   guests = [];
   guestData.forEach(guestObj => {
@@ -105,6 +91,27 @@ const instantiateGuest = (guestData) => {
 const instantiateHotel = (roomData, bookingData) => {
   hotel = new Hotel(roomData, bookingData)
 }
+
+const logIn = (event) => {
+  event.preventDefault();
+  let username = usernameInput.value;
+  let password = passwordInput.value;
+  if (username.startsWith('customer') && password === 'overlook2021') {
+    domUpdates.hide([logInError])
+    domUpdates.displayAccountPage()
+  } else {
+    domUpdates.show([logInError])
+  }
+}
+
+
+
+
+
+
+
+
+
 
 
 window.addEventListener('load', fetchData);
@@ -128,6 +135,9 @@ filterRoomsBtn.addEventListener('click', (event) => {
 });
 bookingGrid.addEventListener('click', (event) => {
   domUpdates.bookRoom(event, roomData);
+});
+submitLogIn.addEventListener('click', (event) => {
+  logIn(event);
 });
 
 export {guestData, bookingData, roomData, bookings, rooms, booking, guests, room, guest, hotel, fetchData}

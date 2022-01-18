@@ -65,12 +65,13 @@
     </section>
   </section>
   <section class='log-in-page hidden' id='logInPage'>
-    <form class='log-in-form'>
+    <form class='log-in-form' id='logInForm'>
       <label>Username : </label>
-      <input type="text" placeholder="Enter Username" name="username" required>
+      <input id='usernameInput' type="text" placeholder="Enter Username" name="username" required>
       <label>Password : </label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-      <button class='submit-btn' type="submit">Login</button>
+      <input id='passwordInput' type="password" placeholder="Enter Password" name="password" required>
+      <p class='log-in-error hidden' id='logInError'>Incorrect username or password. Please try again.</p>
+      <button class='log-in-submit-btn' id='submitLogIn' type="submit">Login</button>
       <button type="button" class="cancelbtn"> Cancel</button>
     </form>
   </section>
