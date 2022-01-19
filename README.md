@@ -21,6 +21,7 @@ If you wish to book a room, you can click on the 'Book Now' link in the navigati
 Book the room by selecting the 'Book Room' button on each room and the booking process will begin. Upcon successful booking, you will receive a message a gratitude and be directed back to your dashboard. At your profile, you will see the room updated in your Upcoming Bookings section with room information and booking date. If you the booking is unsuccessful for any reason, you will receive a message and be guided back to the original booking page. 
 
 **Libraries**
+
 DAY.JS used for:
 - accessing today's date
 - formatting the date
