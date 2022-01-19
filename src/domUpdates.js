@@ -28,6 +28,7 @@ const passwordInput = document.getElementById('passwordInput');
 const submitLogIn = document.getElementById('submitLogIn');
 const logInError = document.querySelector('.log-in-error');
 const requireRoomMsg = document.querySelector('.require-room-msg');
+const requireDateMsg = document.querySelector('.require-date-msg');
 let pastRoomsGrid = document.getElementById('pastRoomsGrid');
 let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
 
@@ -150,10 +151,15 @@ const domUpdates = {
     })
   },
 //*****************BOOKING  BY DATE   **************
-  accessDate(event) {
-    event.preventDefault();
-    selectedDate = calendarForm.value.split('-').join('/')
-    domUpdates.displayRoomsByDate(selectedDate)
+  checkForDate(event) {
+    event.preventDefault()
+    if (!calendarForm.value) {
+      domUpdates.show([requireDateMsg])
+    } else {
+      domUpdates.hide([requireDateMsg])
+      selectedDate = calendarForm.value.split('-').join('/')
+      domUpdates.displayRoomsByDate(selectedDate)
+    }
   },
   displayRoomsByDate(selectedDate) {
     hotel.findAvailableRooms(selectedDate, bookingData)
@@ -188,8 +194,6 @@ const domUpdates = {
     }
   },
   displayRoomType() {
-    // event.preventDefault()
-    // hotel.findRoomsByType(roomOptions.value)
     bookingGrid.innerHTML = '';
     if (hotel.typeOfRooms.length === 0) {
       domUpdates.displayApologies()

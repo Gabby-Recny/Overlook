@@ -100,7 +100,7 @@ navAccount.addEventListener('click', () => {
   domUpdates.displayAccountPage(bookingData, roomData, guest)
 })
 calendarSubmit.addEventListener('click', (event) => {
-  domUpdates.accessDate(event)
+  domUpdates.checkForDate(event)
 });
 filterRoomsBtn.addEventListener('click', (event) => {
   domUpdates.checkForRoomType(event)
