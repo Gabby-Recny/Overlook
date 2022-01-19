@@ -1,3 +1,6 @@
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
+
 const homePage = document.getElementById('homePage');
 const accountDashboard = document.getElementById('accountDashboard');
 const logInPage = document.getElementById('logInPage');
@@ -10,10 +13,6 @@ const msgUserName = document.getElementById('msgUserName');
 const totalSpent = document.getElementById('totalSpent');
 const calendarSubmit = document.getElementById('calendarSubmit');
 const calendarForm = document.getElementById('date');
-let pastRoomsGrid = document.getElementById('pastRoomsGrid');
-let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
-const dayjs = require('dayjs');
-let currentDate = dayjs().format("YYYY/MM/DD");
 const bookingGrid = document.getElementById('bookingGrid');
 const filteredRooms = document.getElementById('filteredRooms');
 const filterRoomsBtn = document.getElementById('filterRoomsBtn');
@@ -25,7 +24,8 @@ const usernameInput = document.getElementById('usernameInput');
 const passwordInput = document.getElementById('passwordInput');
 const submitLogIn = document.getElementById('submitLogIn');
 const logInError = document.querySelector('.log-in-error');
-
+let pastRoomsGrid = document.getElementById('pastRoomsGrid');
+let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
 
 import {
   bookingData,
