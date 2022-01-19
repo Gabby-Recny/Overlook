@@ -44,7 +44,7 @@ const postBookingAPI = (newBooking) => {
       throw new Error(`Error`)
     }
   })
-    .catch(error => console.log(error))
+    .catch(error => domUpdates.displayErrorMsg())
 }
 
 

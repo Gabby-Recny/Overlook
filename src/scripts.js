@@ -5,6 +5,7 @@ import {
   fetchOneCustomerAPI,
   fetchRoomsAPI,
   fetchBookingAPI,
+  postBookingAPI
 } from './apiCalls.js';
 import domUpdates from './domUpdates.js';
 import {
@@ -18,7 +19,9 @@ import {
   logInForm,
   submitLogIn,
   logInError,
-  filterRoomsBtn
+  filterRoomsBtn,
+  selectedDate,
+  displayLoader
 } from './domUpdates.js';
 import User from './classes/User.js';
 import Hotel from './classes/Hotel.js';
@@ -78,6 +81,21 @@ const lookUpGuest = (userNameId) => {
   .catch(error => domUpdates.show([logInError]))
 }
 
+const createReservation = (bookedRoom) => {
+let bookingDate = selectedDate.split('-').join('/');
+  console.log('Line 86 Script', guest)
+  const newBooking = {
+    userID: guest.id,
+    date: bookingDate,
+    roomNumber: bookedRoom.number
+  };
+  console.log('LINE 92 IN SCRIPTS')
+  domUpdates.displayLoader()
+  setTimeout(() => {
+    postBookingAPI(newBooking)
+  }, 1500)
+}
+
 window.addEventListener('load', fetchData);
 navLogIn.addEventListener('click', () => {
   domUpdates.displayLogInPage()
@@ -92,7 +110,7 @@ calendarSubmit.addEventListener('click', (event) => {
   domUpdates.accessDate(event)
 });
 filterRoomsBtn.addEventListener('click', (event) => {
-  domUpdates.accessType(event)
+  domUpdates.displayRoomType(event)
 });
 bookingGrid.addEventListener('click', (event) => {
   domUpdates.bookRoom(event, roomData);
@@ -101,4 +119,4 @@ submitLogIn.addEventListener('click', (event) => {
   logIn(event);
 });
 
-export {guestData, bookingData, roomData, booking, guests, room, guest, hotel, fetchData, instantiateGuest}
+export {guestData, bookingData, roomData, booking, guests, room, guest, hotel, fetchData, instantiateGuest, createReservation}

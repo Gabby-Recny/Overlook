@@ -32,22 +32,20 @@ import {
   roomData,
   guest,
   hotel,
+  createReservation,
 } from './scripts.js';
 import {
   postBookingAPI
 } from './apiCalls.js';
 
-
 let selectedDate;
+
 const domUpdates = {
 
   hide(elements) {
     elements.forEach(element => element.classList.add('hidden'));
   },
 
-  reset(elements) {
-    elements.forEach(element => element = '');
-  },
   show(elements) {
     elements.forEach(element => element.classList.remove('hidden'));
   },
@@ -127,17 +125,17 @@ const domUpdates = {
 
     upcomingRoomsGrid.innerHTML = '';
     sortedBookings.forEach(booking => {
-      let room = roomData.find(room => room.number === booking.roomNumber);
+      let selectedRoom = hotel.getRoomInfo(booking)
       upcomingRoomsGrid.innerHTML += `
         <article class='room-card'>
           <div class='booking-info'>
             <p id='upcomingDate'>${booking.date}</p>
-            <p id='upcomingRoomType'>${room.roomType}</p>
+            <p id='upcomingRoomType'>${selectedRoom.roomType}</p>
           </div>
             <img class='room-photo' src="https:/loremflickr.com/640/360"  alt="Random Photo">
           <div class='cost-and-bed-type'>
-            <h3 id='upcomingCost'>$${room.costPerNight} per night</h3>
-            <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
+            <h3 id='upcomingCost'>$${selectedRoom.costPerNight} per night</h3>
+            <h3 class='room-bed-type' id='upcomingBedType'>${selectedRoom.numBeds} ${selectedRoom.bedSize}</h3>
           </div>
         </article>`
     })
@@ -172,12 +170,13 @@ const domUpdates = {
       </article>`
     })
   },
-  accessType() {
+  // accessType() {
+  //   event.preventDefault()
+  //   domUpdates.displayRoomType(roomOptions.value)
+  // },
+  displayRoomType(event) {
     event.preventDefault()
-    domUpdates.displayRoomType(roomOptions.value)
-  },
-  displayRoomType(roomType) {
-    hotel.findRoomsByType(roomType)
+    hotel.findRoomsByType(roomOptions.value)
     bookingGrid.innerHTML = '';
     if (hotel.typeOfRooms.length === 0) {
       domUpdates.displayApologies()
@@ -202,24 +201,11 @@ const domUpdates = {
       let bookedRoom = roomData.find(room => {
         return room.number === parseInt(event.target.id)
       })
-      domUpdates.createReservation(bookedRoom)
+      createReservation(bookedRoom)
     }
   },
-  createReservation(bookedRoom) {
-  let bookingDate = selectedDate.split('-').join('/');
-    const newBooking = {
-      userID: guest.id,
-      date: bookingDate,
-      roomNumber: bookedRoom.number
-    };
-    bookingGrid.innerHTML = '';
-    bookingGrid.innerHTML += `<article class='loader'></article>`
-    setTimeout(() => {
-      postBookingAPI(newBooking)
-    }, 2000)
-  },
   displaySuccessfulResMsg() {
-    bookingGrid.innerHTML = ''
+    bookingGrid.innerHTML = '';
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
     setTimeout(() => {
       bookingGrid.innerHTML = '';
@@ -227,12 +213,16 @@ const domUpdates = {
     }, 3500)
   },
   displayErrorMsg() {
-    bookingGrid.innerHTML = ''
-    bookingGrid.innerHTML += `<h2 class='post-booking-message'>Ruh roh, something went go. Go back and try again!</h2>`
+    bookingGrid.innerHTML = '';
+    bookingGrid.innerHTML += `<h2 class='post-booking-message'>Ruh roh, something went wrong. Go back and try again!</h2>`
     setTimeout(() => {
       domUpdates.displayBookingPage()
     }, 3500)
-  }
+  },
+  displayLoader() {
+    bookingGrid.innerHTML = '';
+    bookingGrid.innerHTML += `<article class='loader'></article>`
+  },
 }
 
 export default domUpdates;
@@ -256,5 +246,6 @@ export {
   logInForm,
   submitLogIn,
   logInError,
-  selectedDate
+  selectedDate,
+  // displayLoader,
 };
