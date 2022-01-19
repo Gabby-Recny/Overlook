@@ -32,6 +32,7 @@ class User {
   }
 
   getPastBookings(currentDate, bookingData) {
+    this.pastBookings = [];
     this.bookings.forEach(booking => {
       if (currentDate > booking.date) {
         this.pastBookings.push(booking);
@@ -41,6 +42,7 @@ class User {
   }
 
   getUpcomingBookings(currentDate, bookingData) {
+    this.upcomingBookings = [];
     this.bookings.forEach(booking => {
       if ((currentDate === booking.date) || (currentDate < booking.date)) {
         this.upcomingBookings.push(booking);

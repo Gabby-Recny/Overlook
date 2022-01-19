@@ -31,9 +31,6 @@ import Hotel from './classes/Hotel.js';
 let guestData;
 let bookingData;
 let roomData;
-let booking;
-let guests;
-let room;
 let guest;
 let hotel;
 
@@ -56,7 +53,6 @@ const pageLoad = (data) => {
 const instantiateGuest = (data) => {
   guest = new User(data)
   domUpdates.displayAccountPage(bookingData, roomData, guest)
-
 }
 
 const logIn = (event) => {
@@ -83,13 +79,11 @@ const lookUpGuest = (userNameId) => {
 
 const createReservation = (bookedRoom) => {
 let bookingDate = selectedDate.split('-').join('/');
-  console.log('Line 86 Script', guest)
   const newBooking = {
     userID: guest.id,
     date: bookingDate,
     roomNumber: bookedRoom.number
   };
-  console.log('LINE 92 IN SCRIPTS')
   domUpdates.displayLoader()
   setTimeout(() => {
     postBookingAPI(newBooking)
@@ -119,4 +113,4 @@ submitLogIn.addEventListener('click', (event) => {
   logIn(event);
 });
 
-export {guestData, bookingData, roomData, booking, guests, room, guest, hotel, fetchData, instantiateGuest, createReservation}
+export {guestData, bookingData, roomData, guest, hotel, fetchData, instantiateGuest, createReservation}
