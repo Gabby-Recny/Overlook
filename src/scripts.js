@@ -21,7 +21,6 @@ import {
   logInError,
   filterRoomsBtn,
   selectedDate,
-  displayLoader
 } from './domUpdates.js';
 import User from './classes/User.js';
 import Hotel from './classes/Hotel.js';
@@ -104,7 +103,7 @@ calendarSubmit.addEventListener('click', (event) => {
   domUpdates.accessDate(event)
 });
 filterRoomsBtn.addEventListener('click', (event) => {
-  domUpdates.displayRoomType(event)
+  domUpdates.checkForRoomType(event)
 });
 bookingGrid.addEventListener('click', (event) => {
   domUpdates.bookRoom(event, roomData);
