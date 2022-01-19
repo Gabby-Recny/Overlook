@@ -111,7 +111,7 @@ const domUpdates = {
       let pastRoom = roomData.find(room => room.number === booking.roomNumber);
       pastRoomsGrid.innerHTML += `
         <article class='past-room-card'>
-          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="${pastRoom.roomType}">
+          <img class='past-room-photo' src="https://loremflickr.com/640/360"  alt="Luxurious and artistic ${pastRoom.roomType} at the Overlook Hotel.">
           <div class='past-booking-info'>
             <p id='pastDate'>${booking.date}</p>
             <p id='pastRoomType'>${pastRoom.roomType}</p>
@@ -140,7 +140,7 @@ const domUpdates = {
             <p id='upcomingDate'>${booking.date}</p>
             <p id='upcomingRoomType'>${selectedRoom.roomType}</p>
           </div>
-            <img class='room-photo' src="https:/loremflickr.com/640/360"  alt="Random Photo">
+            <img class='room-photo' src="https:/loremflickr.com/640/360"  alt="Luxurious and artistic ${selectedRoom.roomType} at the Overlook Hotel.">
           <div class='cost-and-bed-type'>
             <h3 id='upcomingCost'>$${selectedRoom.costPerNight} per night</h3>
             <h3 class='room-bed-type' id='upcomingBedType'>${selectedRoom.numBeds} ${selectedRoom.bedSize}</h3>
@@ -167,7 +167,7 @@ const domUpdates = {
           <div class='booking-info'>
             <p id='upcomingRoomType'>${room.roomType}</p>
           </div>
-          <img class='room-photo' src="https://loremflickr.com/640/360"  alt="${room.roomType}">
+          <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Luxurious and artistic ${room.roomType} at the Overlook Hotel.">
           <div class='cost-and-bed-type'>
             <h3 id='upcomingCost'>$${room.costPerNight}</h3>
             <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
@@ -189,7 +189,7 @@ const domUpdates = {
           <div class='booking-info'>
             <p id='upcomingRoomType'>${room.roomType}</p>
           </div>
-          <img class='room-photo' src="https://loremflickr.com/640/360"  alt="${room.roomType}">
+          <img class='room-photo' src="https://loremflickr.com/640/360"  alt="Luxurious and artistic ${room.roomType} at the Overlook Hotel.">
           <div class='cost-and-bed-type'>
             <h3 id='upcomingCost'>$${room.costPerNight}</h3>
             <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
