@@ -42,9 +42,9 @@
 .booking-info {
   width: 50%;
   height: 20%;
+  color: red;
   border: blue solid 5px;
   background-color: yellow;
-  opacity: 70%;
   position: absolute;
   top: 15%;
   left: 5%;
@@ -63,6 +63,7 @@
 }
 
 .cost-and-bed-type {
+  color: red;
   border: blue solid 5px;
   height: 22%;
   background-color: yellow;

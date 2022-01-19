@@ -1,3 +1,6 @@
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
+
 const homePage = document.getElementById('homePage');
 const accountDashboard = document.getElementById('accountDashboard');
 const logInPage = document.getElementById('logInPage');
@@ -10,10 +13,6 @@ const msgUserName = document.getElementById('msgUserName');
 const totalSpent = document.getElementById('totalSpent');
 const calendarSubmit = document.getElementById('calendarSubmit');
 const calendarForm = document.getElementById('date');
-let pastRoomsGrid = document.getElementById('pastRoomsGrid');
-let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
-const dayjs = require('dayjs');
-let currentDate = dayjs().format("YYYY/MM/DD");
 const bookingGrid = document.getElementById('bookingGrid');
 const filteredRooms = document.getElementById('filteredRooms');
 const filterRoomsBtn = document.getElementById('filterRoomsBtn');
@@ -25,19 +24,21 @@ const usernameInput = document.getElementById('usernameInput');
 const passwordInput = document.getElementById('passwordInput');
 const submitLogIn = document.getElementById('submitLogIn');
 const logInError = document.querySelector('.log-in-error');
-
+let pastRoomsGrid = document.getElementById('pastRoomsGrid');
+let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
 
 import {
   bookingData,
   roomData,
   guest,
   hotel,
+  createReservation,
 } from './scripts.js';
 import {
   postBookingAPI
 } from './apiCalls.js';
 
-
+let selectedDate;
 
 const domUpdates = {
 
@@ -45,9 +46,6 @@ const domUpdates = {
     elements.forEach(element => element.classList.add('hidden'));
   },
 
-  reset(elements) {
-    elements.forEach(element => element = '');
-  },
   show(elements) {
     elements.forEach(element => element.classList.remove('hidden'));
   },
@@ -76,26 +74,32 @@ const domUpdates = {
       accountDashboard,
     ]);
   },
-  displayAccountPage(bookingData, roomData) {
+  displayAccountPage(bookingData, roomData, guest) {
     domUpdates.show([accountDashboard]);
     domUpdates.hide([
       homePage,
       bookingPage,
       logInPage
     ]);
-    domUpdates.displayUserInfo(bookingData, roomData)
+    domUpdates.displayUserInfo(bookingData, roomData, guest)
   },
-  displayUserInfo(bookingData, roomData) {
-    guest.getUserBookings(bookingData)
-    guest.calculateTotalSpent(bookingData, roomData);
+  displayUserInfo(bookingData, roomData, guest) {
     msgUserName.innerText = `${guest.name}!`;
-    totalSpent.innerHTML = `${guest.calculateTotalSpent(bookingData, roomData)}`;
+    totalSpent.innerHTML = `$${guest.calculateTotalSpent(bookingData, roomData)}`;
     domUpdates.displayPastBookings(bookingData, roomData);
     domUpdates.displayUpcomingBookings(bookingData, roomData);
   },
   displayPastBookings(bookingData, roomData) {
     let guestBookings = guest.getPastBookings(currentDate, bookingData);
-    guestBookings.forEach(booking => {
+    let sortedBookings = guest.sortDescendingBookings(guestBookings)
+
+    if (sortedBookings.length === 0) {
+      pastRoomsGrid.innerHTML = '';
+      pastRoomsGrid.innerHTML += `It looks like you haven't booked a stay with yet! Click the "Book Now" button to get started!`
+    }
+
+    pastRoomsGrid.innerHTML = '';
+    sortedBookings.forEach(booking => {
       let pastRoom = roomData.find(room => room.number === booking.roomNumber);
       pastRoomsGrid.innerHTML += `
         <article class='past-room-card'>
@@ -107,22 +111,31 @@ const domUpdates = {
           </div>
         </article>
      `
-    })
+   })
   },
   displayUpcomingBookings(bookingData, roomData) {
     let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
-    upcomingGuestBookings.forEach(booking => {
-      let room = roomData.find(room => room.number === booking.roomNumber);
+
+    let sortedBookings = guest.sortAscendingBookings(upcomingGuestBookings)
+
+    if (sortedBookings.length === 0) {
+      upcomingRoomsGrid.innerHTML = '';
+      upcomingRoomsGrid.innerHTML += `It looks like you haven't booked a stay with yet! Click the "Book Now" button to get started!`
+    }
+
+    upcomingRoomsGrid.innerHTML = '';
+    sortedBookings.map(booking => {
+      let selectedRoom = hotel.getRoomInfo(booking)
       upcomingRoomsGrid.innerHTML += `
         <article class='room-card'>
           <div class='booking-info'>
             <p id='upcomingDate'>${booking.date}</p>
-            <p id='upcomingRoomType'>${room.roomType}</p>
+            <p id='upcomingRoomType'>${selectedRoom.roomType}</p>
           </div>
             <img class='room-photo' src="https:/loremflickr.com/640/360"  alt="Random Photo">
           <div class='cost-and-bed-type'>
-            <h3 id='upcomingCost'>$${room.costPerNight} per night</h3>
-            <h3 class='room-bed-type' id='upcomingBedType'>${room.numBeds} ${room.bedSize}</h3>
+            <h3 id='upcomingCost'>$${selectedRoom.costPerNight} per night</h3>
+            <h3 class='room-bed-type' id='upcomingBedType'>${selectedRoom.numBeds} ${selectedRoom.bedSize}</h3>
           </div>
         </article>`
     })
@@ -132,8 +145,8 @@ const domUpdates = {
   },
   accessDate(event) {
     event.preventDefault();
-    let date = calendarForm.value.split(' ').join('/')
-    domUpdates.displayRoomsByDate(date)
+    selectedDate = calendarForm.value.split('-').join('/')
+    domUpdates.displayRoomsByDate(selectedDate)
   },
   displayRoomsByDate(selectedDate) {
     hotel.findAvailableRooms(selectedDate, bookingData)
@@ -157,12 +170,9 @@ const domUpdates = {
       </article>`
     })
   },
-  accessType() {
+  displayRoomType(event) {
     event.preventDefault()
-    domUpdates.displayRoomType(roomOptions.value)
-  },
-  displayRoomType(roomType) {
-    hotel.findRoomsByType(roomType)
+    hotel.findRoomsByType(roomOptions.value)
     bookingGrid.innerHTML = '';
     if (hotel.typeOfRooms.length === 0) {
       domUpdates.displayApologies()
@@ -187,24 +197,28 @@ const domUpdates = {
       let bookedRoom = roomData.find(room => {
         return room.number === parseInt(event.target.id)
       })
-      domUpdates.createReservation(bookedRoom)
+      createReservation(bookedRoom)
     }
   },
-  createReservation(bookedRoom) {
-    bookingGrid.innerHTML = '';
-    bookingGrid.innerHTML += `<article class='loader'></article>`
-    setTimeout(() => {
-      postBookingAPI(bookedRoom)
-    }, 2500)
-  },
   displaySuccessfulResMsg() {
-    bookingGrid.innerHTML = ''
+    bookingGrid.innerHTML = '';
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
+    setTimeout(() => {
+      bookingGrid.innerHTML = '';
+      domUpdates.displayAccountPage(bookingData, roomData, guest)
+    }, 3500)
   },
   displayErrorMsg() {
-    bookingGrid.innerHTML = ''
-    bookingGrid.innerHTML += `<h2 class='post-booking-message'>Ruh roh, something went go. Go back and try again!</h2>`
-  }
+    bookingGrid.innerHTML = '';
+    bookingGrid.innerHTML += `<h2 class='post-booking-message'>Ruh roh, something went wrong. Go back and try again!</h2>`
+    setTimeout(() => {
+      domUpdates.displayBookingPage()
+    }, 3500)
+  },
+  displayLoader() {
+    bookingGrid.innerHTML = '';
+    bookingGrid.innerHTML += `<article class='loader'></article>`
+  },
 }
 
 export default domUpdates;
@@ -227,5 +241,7 @@ export {
   usernameInput,
   logInForm,
   submitLogIn,
-  logInError
+  logInError,
+  selectedDate,
+  // displayLoader,
 };

@@ -1,3 +1,5 @@
+import selectedDate from '../domUpdates.js';
+
 class Hotel {
   constructor(hotelRooms, hotelBookings) {
     this.rooms = hotelRooms;
@@ -7,11 +9,20 @@ class Hotel {
     this.typeOfRooms = [];
   }
   getRoomInfo(booking) {
-    return this.rooms.find(room => room.number === booking.roomNumber);
+    return this.rooms.find(room =>  {
+      if (room.number === booking.roomNumber) {
+        return room;
+      } else {
+        return `Sorry, we were unable to meet your criterea. Please try and different date or room preferance.`;
+      }
+    })
   }
-  findUnavailableRooms(date, bookings) {
-    let newDate = date.split('-').join('/')
-    this.unavailableRooms = this.bookings.filter(booking => booking.date === newDate);
+
+  findUnavailableRooms(selectedDate, bookings) {
+    let newDate = selectedDate.split('-').join('/')
+    return this.unavailableRooms = this.bookings.filter(booking => {
+      return booking.date === newDate
+    });
   }
   findAvailableRooms(date, bookings) {
     this.findUnavailableRooms(date, bookings);

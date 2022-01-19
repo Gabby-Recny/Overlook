@@ -16,11 +16,10 @@
     <ul class="nav-links">
       <li id="navAccount" tabindex="0">My Account</li>
       <li id="navBookNow" tabindex="0">Book Now</li>
-      <li id="navLogOut" tabindex="0">Log Out</li>
       <li id="navLogIn" tabindex="0">Log In</li>
     </ul>
   </nav>
-  <section class='home-page' id='homePage'>
+  <section class='home-page hidden' id='homePage'>
     <div class='main-image'>
       <img class="home-page-image" src='https://placebear.com/640/360' alt='Random image'>
       <button class='booking-button' id='mainBookingBtn'>
@@ -31,7 +30,7 @@
   <section class='account-dashboard hidden' id='accountDashboard'>
     <article class='account-info'>
       <h2 id="welcomeMsg" class="welcome-msg">Welcome, <span class='user-name' id='msgUserName'>User!</span></h2>
-      <h2 class='user-spendings'>You have spent <span id='totalSpent'>$1093424.84</span> on rooms with us. <br>Thank you for your trust!</h2>
+      <h2 class='user-spendings'>You have spent <span id='totalSpent'>$0</span> on rooms with us. <br>What are you waiting for? Log in and book with us today!</h2>
     </article>
     <section class='upcoming-bookings' id='upcomingBookings'>
       <h2>Upcoming Trips</h2>
@@ -44,7 +43,7 @@
       </section>
     </section>
   </section>
-  <section class='log-in-page hidden' id='logInPage'>
+  <section class='log-in-page' id='logInPage'>
     <form class='log-in-form' id='logInForm'>
       <label>Username : </label>
       <input id='usernameInput' type="text" placeholder="Enter Username" name="username" required>
@@ -85,5 +84,4 @@
       </section>
     <script src="bundle.js"></script>
 </body>
-
 </html>

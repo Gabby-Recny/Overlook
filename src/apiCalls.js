@@ -27,20 +27,17 @@ const fetchRoomsAPI = () => {
     .catch(error => domUpdates.displayErrorMsg())
 }
 
-const postBookingAPI = (bookedRoom) => {
+const postBookingAPI = (newBooking) => {
   fetch('http://localhost:3001/api/v1/bookings', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      userID: guest.id,
-      date: currentDate,
-      roomNumber: bookedRoom.number
-    })
+    body: JSON.stringify(newBooking)
   }).then(response => {
     if (response.ok) {
       fetchData()
+      guest.upcomingBookings.push(newBooking)
       domUpdates.displaySuccessfulResMsg()
       return response.json()
     } else if (!response.ok) {
