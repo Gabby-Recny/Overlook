@@ -2,7 +2,6 @@
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 
-
 //***************QUERY SELECTORS**************
 const homePage = document.getElementById('homePage');
 const accountDashboard = document.getElementById('accountDashboard');
@@ -27,6 +26,8 @@ const usernameInput = document.getElementById('usernameInput');
 const passwordInput = document.getElementById('passwordInput');
 const submitLogIn = document.getElementById('submitLogIn');
 const logInError = document.querySelector('.log-in-error');
+const requireRoomMsg = document.querySelector('.require-room-msg');
+const requireDateMsg = document.querySelector('.require-date-msg');
 let pastRoomsGrid = document.getElementById('pastRoomsGrid');
 let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
 
@@ -148,11 +149,16 @@ const domUpdates = {
         </article>`
     })
   },
-//*****************BOOKING**************
-  accessDate(event) {
-    event.preventDefault();
-    selectedDate = calendarForm.value.split('-').join('/')
-    domUpdates.displayRoomsByDate(selectedDate)
+//*****************BOOKING  BY DATE   **************
+  checkForDate(event) {
+    event.preventDefault()
+    if (!calendarForm.value) {
+      domUpdates.show([requireDateMsg])
+    } else {
+      domUpdates.hide([requireDateMsg])
+      selectedDate = calendarForm.value.split('-').join('/')
+      domUpdates.displayRoomsByDate(selectedDate)
+    }
   },
   displayRoomsByDate(selectedDate) {
     hotel.findAvailableRooms(selectedDate, bookingData)
@@ -176,9 +182,17 @@ const domUpdates = {
       </article>`
     })
   },
-  displayRoomType(event) {
+  //*****************BOOKING  BY ROOM TYPE   **************
+  checkForRoomType(event) {
     event.preventDefault()
-    hotel.findRoomsByType(roomOptions.value)
+    if (roomOptions.value === 'empty') {
+      domUpdates.show([requireRoomMsg])
+    } else {
+      domUpdates.hide([requireRoomMsg])
+      domUpdates.displayRoomType()
+    }
+  },
+  displayRoomType() {
     bookingGrid.innerHTML = '';
     if (hotel.typeOfRooms.length === 0) {
       domUpdates.displayApologies()
@@ -198,6 +212,7 @@ const domUpdates = {
       </article>`
     })
   },
+  //*****************BOOKING **************
   bookRoom(event, roomData) {
     if (event.target.className === 'booking-btn') {
       let bookedRoom = roomData.find(room => {
@@ -229,6 +244,9 @@ const domUpdates = {
   displayApologies() {
     bookingGrid.innerText += ` It appears we have no rooms available that match your criterea. We would love to have you stop by! Try changing your date or room preferances.`
   },
+  displayRequiredError() {
+
+  }
 }
 
 export default domUpdates;

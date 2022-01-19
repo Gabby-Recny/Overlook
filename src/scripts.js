@@ -21,7 +21,6 @@ import {
   logInError,
   filterRoomsBtn,
   selectedDate,
-  displayLoader
 } from './domUpdates.js';
 import User from './classes/User.js';
 import Hotel from './classes/Hotel.js';
@@ -101,10 +100,10 @@ navAccount.addEventListener('click', () => {
   domUpdates.displayAccountPage(bookingData, roomData, guest)
 })
 calendarSubmit.addEventListener('click', (event) => {
-  domUpdates.accessDate(event)
+  domUpdates.checkForDate(event)
 });
 filterRoomsBtn.addEventListener('click', (event) => {
-  domUpdates.displayRoomType(event)
+  domUpdates.checkForRoomType(event)
 });
 bookingGrid.addEventListener('click', (event) => {
   domUpdates.bookRoom(event, roomData);
