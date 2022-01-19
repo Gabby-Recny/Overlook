@@ -124,7 +124,7 @@ const domUpdates = {
     }
 
     upcomingRoomsGrid.innerHTML = '';
-    sortedBookings.forEach(booking => {
+    sortedBookings.map(booking => {
       let selectedRoom = hotel.getRoomInfo(booking)
       upcomingRoomsGrid.innerHTML += `
         <article class='room-card'>
@@ -170,10 +170,6 @@ const domUpdates = {
       </article>`
     })
   },
-  // accessType() {
-  //   event.preventDefault()
-  //   domUpdates.displayRoomType(roomOptions.value)
-  // },
   displayRoomType(event) {
     event.preventDefault()
     hotel.findRoomsByType(roomOptions.value)

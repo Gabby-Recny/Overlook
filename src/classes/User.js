@@ -10,14 +10,12 @@ class User {
     this.upcomingBookings = [];
     this.totalSpent = 0;
   }
-  //SAD PATH FOR USER BOOKINGS
   getUserBookings(bookingData) {
     bookingData.forEach(booking => {
       if (this.id === booking.userID) {
         this.bookings.push(booking)
       }
     })
-    // return this.bookings;
   }
   calculateTotalSpent(bookingData, roomData) {
     this.getUserBookings(bookingData)
@@ -34,7 +32,6 @@ class User {
   }
 
   getPastBookings(currentDate, bookingData) {
-    // this.getUserBookings(bookingData)
     this.bookings.forEach(booking => {
       if (currentDate > booking.date) {
         this.pastBookings.push(booking);
@@ -44,7 +41,6 @@ class User {
   }
 
   getUpcomingBookings(currentDate, bookingData) {
-    // this.getUserBookings(bookingData)
     this.bookings.forEach(booking => {
       if ((currentDate === booking.date) || (currentDate < booking.date)) {
         this.upcomingBookings.push(booking);
@@ -61,7 +57,7 @@ class User {
 
   sortAscendingBookings(bookings) {
     return bookings.sort((a, b) => {
-      return dayjs(b.date) - dayjs(a.date)
+      return dayjs(a.date) - dayjs(b.date)
     })
   }
 }

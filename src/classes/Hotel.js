@@ -11,7 +11,6 @@ class Hotel {
   getRoomInfo(booking) {
     return this.rooms.find(room =>  {
       if (room.number === booking.roomNumber) {
-        console.log('Hotel line 14', room)
         return room;
       } else {
         return `Sorry, we were unable to meet your criterea. Please try and different date or room preferance.`;
