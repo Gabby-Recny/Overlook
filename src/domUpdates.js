@@ -1,6 +1,9 @@
+//*****************DEPENDENCIES**************
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 
+
+//***************QUERY SELECTORS**************
 const homePage = document.getElementById('homePage');
 const accountDashboard = document.getElementById('accountDashboard');
 const logInPage = document.getElementById('logInPage');
@@ -27,6 +30,8 @@ const logInError = document.querySelector('.log-in-error');
 let pastRoomsGrid = document.getElementById('pastRoomsGrid');
 let upcomingRoomsGrid = document.getElementById('upcomingRoomsGrid');
 
+
+//*****************IMPORTS**************
 import {
   bookingData,
   roomData,
@@ -42,6 +47,7 @@ let selectedDate;
 
 const domUpdates = {
 
+//*****************HIDING AND SHOWING**************
   hide(elements) {
     elements.forEach(element => element.classList.add('hidden'));
   },
@@ -49,7 +55,7 @@ const domUpdates = {
   show(elements) {
     elements.forEach(element => element.classList.remove('hidden'));
   },
-
+//*****************DISPLAY PAGES**************
   displayHomePage() {
     domUpdates.show([homePage, mainBookingBtn]);
     domUpdates.hide([
@@ -83,6 +89,8 @@ const domUpdates = {
     ]);
     domUpdates.displayUserInfo(bookingData, roomData, guest)
   },
+//*****************USER DASHBOARD**************
+
   displayUserInfo(bookingData, roomData, guest) {
     msgUserName.innerText = `${guest.name}!`;
     totalSpent.innerHTML = `$${guest.calculateTotalSpent(bookingData, roomData)}`;
@@ -140,9 +148,7 @@ const domUpdates = {
         </article>`
     })
   },
-  displayApologies() {
-    bookingGrid.innerText += ` It appears we have no rooms available that match your criterea. We would love to have you stop by! Try changing your date or room preferances.`
-  },
+//*****************BOOKING**************
   accessDate(event) {
     event.preventDefault();
     selectedDate = calendarForm.value.split('-').join('/')
@@ -200,6 +206,7 @@ const domUpdates = {
       createReservation(bookedRoom)
     }
   },
+//*****************POST REQUEST**************
   displaySuccessfulResMsg() {
     bookingGrid.innerHTML = '';
     bookingGrid.innerHTML += `<h2 class='post-booking-message'>Thank you for booking with us! We're so excited to have you!</h2>`
@@ -218,6 +225,9 @@ const domUpdates = {
   displayLoader() {
     bookingGrid.innerHTML = '';
     bookingGrid.innerHTML += `<article class='loader'></article>`
+  },
+  displayApologies() {
+    bookingGrid.innerText += ` It appears we have no rooms available that match your criterea. We would love to have you stop by! Try changing your date or room preferances.`
   },
 }
 
@@ -243,5 +253,4 @@ export {
   submitLogIn,
   logInError,
   selectedDate,
-  // displayLoader,
 };

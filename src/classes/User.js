@@ -59,7 +59,7 @@ class User {
 
   sortAscendingBookings(bookings) {
     return bookings.sort((a, b) => {
-      return dayjs(b.date) - dayjs(a.date)
+      return dayjs(a.date) - dayjs(b.date)
     })
   }
 }
