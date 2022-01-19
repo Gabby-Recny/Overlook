@@ -136,8 +136,6 @@ const domUpdates = {
       let selectedRoom = roomData.find(room => {
         return room.number ===  booking.roomNumber
       })
-
-      console.log(selectedRoom)
       upcomingRoomsGrid.innerHTML += `
         <article class='room-card'>
           <div class='booking-info'>
@@ -192,10 +190,11 @@ const domUpdates = {
       domUpdates.show([requireRoomMsg])
     } else {
       domUpdates.hide([requireRoomMsg])
-      domUpdates.displayRoomType()
+      domUpdates.displayRoomType(roomOptions.value)
     }
   },
-  displayRoomType() {
+  displayRoomType(roomOptions) {
+    hotel.findRoomsByType(roomOptions)
     bookingGrid.innerHTML = '';
     if (hotel.typeOfRooms.length === 0) {
       domUpdates.displayApologies()
