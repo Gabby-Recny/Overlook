@@ -2,7 +2,6 @@
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 
-
 //***************QUERY SELECTORS**************
 const homePage = document.getElementById('homePage');
 const accountDashboard = document.getElementById('accountDashboard');
