@@ -124,8 +124,7 @@ const domUpdates = {
   },
   displayUpcomingBookings(bookingData, roomData) {
     let upcomingGuestBookings = guest.getUpcomingBookings(currentDate, bookingData);
-
-    let sortedBookings = guest.sortAscendingBookings(upcomingGuestBookings)
+    let sortedBookings = guest.sortAscendingBookings(upcomingGuestBookings);
 
     if (sortedBookings.length === 0) {
       upcomingRoomsGrid.innerHTML = '';
@@ -133,8 +132,12 @@ const domUpdates = {
     }
 
     upcomingRoomsGrid.innerHTML = '';
-    sortedBookings.map(booking => {
-      let selectedRoom = hotel.getRoomInfo(booking)
+    sortedBookings.forEach(booking => {
+      let selectedRoom = roomData.find(room => {
+        return room.number ===  booking.roomNumber
+      })
+
+      console.log(selectedRoom)
       upcomingRoomsGrid.innerHTML += `
         <article class='room-card'>
           <div class='booking-info'>
