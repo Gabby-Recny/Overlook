@@ -1,7 +1,7 @@
 # Overlook
 
 ## Contributors:
-- Creator: Gabby Recny - [github](www.github.com/Gabby-Recny)
+- [Gabby Recny](www.github.com/Gabby-Recny)
 
 ## Instructions for Starting and Using the Application:
 
@@ -35,6 +35,6 @@ DAY.JS used for:
 - Post API
 
 ## Reviewers
-- Reviewer: Jessica Fatta - [github](www.github.com/JessFatta)
-- Reviewer: Tanisha Latoya - [github](https://github.com/tanishalatoya)
-- Project Manager: Nik Seif - [github](https://github.com/niksseif)
+- [Jessica Fatta](www.github.com/JessFatta)
+- [Tanisha Latoya](https://github.com/tanishalatoya)
+- [Nik Seif](https://github.com/niksseif)
