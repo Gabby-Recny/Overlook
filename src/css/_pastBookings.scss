@@ -1,13 +1,6 @@
 @import '_mixins';
 @import '_variables';
 
-.past-bookings {
-  h2 {
-    font-size: 25px;
-    font-style: italic;
-    font-weight: bold;
-  }
-}
 
 .past-rooms-grid {
   display: flex;
@@ -18,8 +11,6 @@
 .past-room-card {
   height: 200px;
   width: 375px;
-  background-color: #CCCCCC;
-  color: #FFFFFF;
   margin: 15px;
   box-shadow: 0px 5px 10px #00000055;
   display: flex;
@@ -29,7 +20,8 @@
   @include fade-in-animation;
   overflow: hidden;
   position: relative;
-  border: red 5px solid;
+  border: solid #120100 10px;
+  background-color: #F3C7C1;
 
   &:hover {
     filter: brightness(115%);
@@ -48,17 +40,16 @@
   object-fit: cover;
   @include top-corner-radius;
   cursor: pointer;
-  border: purple solid 5px;
+  background-color: #F3C7C1;
 }
 
 .past-booking-info {
-  color: red;
-  border: blue solid 5px;
+  border-top: solid #120100 6px;
   height: 27%;
-  background-color: yellow;
   @include center-vertical;
   align-items: center;
   opacity: 70%;
   @include card-font;
+  background-color: #F3C7C1;
 
 }

@@ -2,9 +2,16 @@
 @import '_upcomingBookings';
 @import '_mixins';
 
-
 .account-info {
+  background-color: #F3C7C1;
   font-style: italic;
+  color: black;
+  width: 52%;
+  margin: 10px;
+  padding: 4px;
+  border-radius: 10px;
+  border: 5px solid #120100;
+
   .welcome-msg {
     font-size: 30px;
     font-weight: bold;
@@ -12,4 +19,18 @@
   .user-spendings {
     font-size: 20px;
   }
+}
+
+.upcoming-booking-title,
+.past-booking-title {
+    font-style: italic;
+    color: black;
+    background-color: #F3C7C1;
+    padding: 18px;
+    font-size: 24px;
+    width: 39%;
+    text-align: center;
+    border: 5px solid #120100;
+    border-radius: 10px;
+    margin-left: 26%;
 }

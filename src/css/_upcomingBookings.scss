@@ -1,14 +1,6 @@
 @import '_mixins';
 @import '_variables';
 
-.upcoming-bookings {
-  h2 {
-    font-size: 25px;
-    font-style: italic;
-    font-weight: bold;
-  }
-}
-
 .upcoming-rooms-grid {
   display: flex;
   justify-content: space-evenly;
@@ -18,8 +10,6 @@
 .room-card {
   height: 311px;
   width: 420px;
-  background-color: #CCCCCC;
-  color: #FFFFFF;
   margin: 15px;
   box-shadow: 0px 5px 10px #00000055;
   display: flex;
@@ -29,7 +19,7 @@
   @include fade-in-animation;
   overflow: hidden;
   position: relative;
-  border: red 5px solid;
+  border: solid #120100 10px;
 
   &:hover {
     @include highlight;
@@ -42,9 +32,8 @@
 .booking-info {
   width: 50%;
   height: 20%;
-  color: red;
-  border: blue solid 5px;
-  background-color: yellow;
+  border: solid #120100 5px;
+  background-color: #F3C7C1;
   position: absolute;
   top: 15%;
   left: 5%;
@@ -58,16 +47,15 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
-  @include top-corner-radius;
-  border: purple solid 5px;
 }
 
 .cost-and-bed-type {
-  color: red;
-  border: blue solid 5px;
+  border-top: solid #120100 5px;
   height: 22%;
-  background-color: yellow;
+  background-color: #F3C7C1;
   @include center-vertical;
   align-items: center;
   @include card-font;
+  border-right: none;
+  border-left: none;
 }
