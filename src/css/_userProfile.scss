@@ -1,5 +1,7 @@
-@import 'pastBookings';
-@import 'upcomingBookings';
+@import '_pastBookings';
+@import '_upcomingBookings';
+@import '_mixins';
+
 
 .account-info {
   font-style: italic;

@@ -90,6 +90,7 @@ const domUpdates = {
     ]);
     domUpdates.displayUserInfo(bookingData, roomData, guest)
   },
+
 //*****************USER DASHBOARD**************
 
   displayUserInfo(bookingData, roomData, guest) {
@@ -246,10 +247,7 @@ const domUpdates = {
   displayApologies() {
     bookingGrid.innerText += ` It appears we have no rooms available that match your criterea. We would love to have you stop by! Try changing your date or room preferances.`
   },
-  displayRequiredError() {
-
-  }
-}
+};
 
 export default domUpdates;
 export {

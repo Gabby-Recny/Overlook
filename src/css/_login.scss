@@ -1,54 +1,72 @@
+@import '_mixins';
+
+
 .log-in-page {
-  padding: 25px;
-  border: 5px orange solid;
+  background-image: url('https://i.pinimg.com/564x/8e/53/d4/8e53d4d739fbfd3ec0776bd44e38e64e.jpg');
+  background-size: contain;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 75%;
+  height: 100vh;
     .log-in-form {
-      border: 5px solid red;
-      width: 60%;
+      background-color: #FDFBFB;
+      border-radius: 10px;
+      width: 36%;
+      opacity: 92%;
       align-self: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      margin-top: 80px;
+      padding: 5px;
     }
     label {
-      font-size: 20px;
-      color: white;
+      font-size: 15px;
+      color: black;
+      align-self: center;
+      text-decoration: underline #EBD0D0 solid;
     }
  input[type=text], input[type=password] {
-        width: 100%;
+        width: 80%;
         margin: 8px 0;
         padding: 12px 20px;
         display: inline-block;
-        border: 2px solid green;
+        border: 2px solid #EBD0D0;
         box-sizing: border-box;
+        align-self: center;
+        box-shadow: 0px 5px 10px #00000033;
+
     }
-    .submit-btn,
+    .log-in-submit-btn,
     .cancelbtn {
        width: 50%;
-       padding: 15px;
+       padding: 9px;
        margin: 10px 0px;
        border: none;
        cursor: pointer;
        align-self: center;
+       border: 2px #D67C7F solid;
+       box-shadow: 0px 5px 10px #00000033;
+       transition: transform 250ms;
          }
- .submit-btn:hover {
+ .log-in-submit-btn:hover {
    filter: brightness(115%);
-   box-shadow: 0px 5px 10px #00000033;
+   transform: scale(1.1)
     }
-  .submit-btn:focus {
+  .log-in-submit-btn:focus {
     filter: brightness(115%);
-    box-shadow: 0px 5px 10px #00000033;
+    transform: scale(1.1)
   }
   .cancelbtn:hover {
     filter: brightness(115%);
-    box-shadow: 0px 5px 10px #00000033;
+    transform: scale(1.1)
+
      }
    .cancelbtn:focus {
      filter: brightness(115%);
-     box-shadow: 0px 5px 10px #00000033;
+     transform: scale(1.1)
+
    }
 }
