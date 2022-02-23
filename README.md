@@ -20,10 +20,14 @@ If you wish to book a room, you can click on the 'Book Now' link in the navigati
 
 Book the room by selecting the 'Book Room' button on each room and the booking process will begin. Upcon successful booking, you will receive a message a gratitude and be directed back to your dashboard. At your profile, you will see the room updated in your Upcoming Bookings section with room information and booking date. If you the booking is unsuccessful for any reason, you will receive a message and be guided back to the original booking page. 
 
-![] ![Loggin In](https://user-images.githubusercontent.com/84749512/150058905-532ff9ba-69ea-4eff-b854-ed7c45a1dc7c.gif)
 
-![] ![Booking a room](https://user-images.githubusercontent.com/84749512/150058916-6c5edbe1-3a1b-4554-a762-528c07937bfa.gif)
-![] ![Screen Shot 2022-01-17 at 8 45 15 PM](https://user-images.githubusercontent.com/84749512/150058927-c38baee3-fe3f-4129-8ec1-3dcd5877fa51.png)
+![Log In demo gif of Overlook hotel app](https://user-images.githubusercontent.com/84749512/155409256-dc3ab991-207d-4048-bdb1-b8c212dfd77a.gif)
+
+
+![Booking a room demo gif of Overlook hotel app](https://user-images.githubusercontent.com/84749512/155410463-a2cb7788-8137-41af-9cd3-7fd59d734f57.gif)
+
+![Successfully booking a room demo of Overlook Hotel App](https://user-images.githubusercontent.com/84749512/155410610-49989304-73a4-481e-9a01-58d1bb9a9e52.gif)
+
 
 
 **Libraries**
